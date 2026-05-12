@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- SEO BÁSICO -->
+<title>Piso Estudiante Aragón | Alquiler pisos Zaragoza, Huesca y Teruel</title>
+<meta name="description" content="Encuentra tu piso de estudiante en Aragón. Alquiler de pisos, habitaciones y pisos compartidos en Zaragoza, Huesca y Teruel cerca de la universidad. Anúnciate gratis en PisoEstudio."/>
+<meta name="keywords" content="piso estudiante Aragón, piso estudiante Zaragoza, alquiler piso Huesca, habitación estudiante Teruel, piso compartido Zaragoza, alquiler universitario Aragón, pisos baratos Zaragoza"/>
+<meta name="author" content="PisoEstudio Aragón"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://pisoestudio.es/"/>
+
+<!-- OPEN GRAPH (WhatsApp, redes sociales) -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://pisoestudio.es/"/>
+<meta property="og:title" content="Piso Estudiante Aragón | PisoEstudio"/>
+<meta property="og:description" content="Encuentra tu piso de estudiante en Zaragoza. Alquiler de pisos, habitaciones y pisos compartidos cerca de las universidades de Zaragoza, Huesca y Teruel."/>
+<meta property="og:locale" content="es_ES"/>
+
+<!-- TWITTER CARD -->
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Piso Estudiante Aragón | PisoEstudio"/>
+<meta name="twitter:description" content="Encuentra tu piso de estudiante en Zaragoza. Alquiler de pisos, habitaciones y pisos compartidos cerca de las universidades de Zaragoza, Huesca y Teruel."/>
+
+<!-- DATOS ESTRUCTURADOS para Google (Schema.org) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "PisoEstudio Aragón",
+  "url": "https://pisoestudio.es",
+  "description": "Portal de alquiler de pisos y habitaciones para estudiantes en Zaragoza",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://pisoestudio.es/?buscar={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "PisoEstudio Aragón",
+  "url": "https://pisoestudio.es",
+  "description": "Portal especializado en alquiler de pisos para estudiantes universitarios en Zaragoza",
+  "areaServed": {
+    "@type": "City",
+    "name": "Zaragoza"
+  }
+}
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#f2ede6;--ink:#18140f;--surface:#fff;--border:#ddd8cf;
+  --primary:#1d4ed8;--primary-bg:#eff6ff;--primary-light:#93c5fd;
+  --gold:#b45309;--gold-bg:#fffbeb;--gold-light:#fcd34d;
+  --green:#065f46;--green-bg:#ecfdf5;--green-light:#6ee7b7;
+  --red:#991b1b;--red-bg:#fef2f2;--purple:#6d28d9;--purple-bg:#f5f3ff;
+  --muted:#7c756a;--radius:10px;--fav:#e11d48;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
+
+/* TOPBAR */
+.topbar{background:var(--ink);height:58px;display:flex;align-items:center;padding:0 20px;gap:8px;position:sticky;top:0;z-index:900}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0}
+.brand-icon{width:32px;height:32px;background:var(--primary);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:17px}
+.brand-name{font-family:'Syne',sans-serif;font-weight:800;color:#fff;font-size:1.1rem;letter-spacing:-.02em}
+.brand-name em{font-style:normal;color:#60a5fa}
+.topbar-nav{margin-left:auto;display:flex;align-items:center;gap:5px;flex-wrap:nowrap}
+.nav-btn{background:none;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.75);border-radius:7px;padding:6px 11px;font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap}
+.nav-btn:hover,.nav-btn.active{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.35)}
+.nav-btn.cta{background:var(--primary);border-color:var(--primary);color:#fff}
+.nav-btn.cta:hover{background:#1e40af}
+.nav-btn.purp{background:var(--purple);border-color:var(--purple);color:#fff}
+.nav-btn.purp:hover{background:#5b21b6}
+.nav-btn.fav-nav{border-color:rgba(225,29,72,.5);color:#fb7185}
+.nav-btn.fav-nav:hover{background:rgba(225,29,72,.15);color:#fda4af}
+.lang-toggle{display:flex;background:rgba(255,255,255,.08);border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.15);flex-shrink:0}
+.lang-btn{background:none;border:none;color:rgba(255,255,255,.5);padding:5px 9px;font-size:.75rem;font-weight:700;cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif}
+.lang-btn.on{background:rgba(255,255,255,.18);color:#fff}
+
+/* VIEWS */
+.view{display:none;animation:fadeIn .25s ease}
+.view.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* HERO */
+.hero{position:relative;height:480px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero-bg{position:absolute;inset:0;background-image:url('https://catedraldezaragoza.es/wp-content/uploads/basilica-portada2.jpg');background-size:cover;background-position:center 60%;filter:brightness(.45) saturate(1.1)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(24,20,15,.3) 0%,rgba(24,20,15,.65) 100%)}
+.hero-content{position:relative;z-index:2;text-align:center;color:#fff;padding:0 20px;max-width:700px}
+.hero-tag{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:5px 16px;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px;backdrop-filter:blur(4px)}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(1.9rem,5vw,3.2rem);font-weight:800;line-height:1.12;margin-bottom:14px;text-shadow:0 2px 20px rgba(0,0,0,.4)}
+.hero h1 em{font-style:normal;color:#93c5fd}
+.hero p{color:rgba(255,255,255,.75);font-size:.98rem;max-width:480px;margin:0 auto 28px;line-height:1.6}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.hero-btn{padding:12px 24px;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .15s;border:none}
+.hero-btn.primary{background:var(--primary);color:#fff;box-shadow:0 4px 16px rgba(29,78,216,.4)}
+.hero-btn.primary:hover{background:#1e40af;transform:translateY(-1px)}
+.hero-btn.secondary{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(4px)}
+.hero-btn.secondary:hover{background:rgba(255,255,255,.2)}
+.hero-btn.purple-btn{background:var(--purple);color:#fff;box-shadow:0 4px 16px rgba(109,40,217,.4)}
+.hero-btn.purple-btn:hover{background:#5b21b6;transform:translateY(-1px)}
+.hero-stats{display:flex;justify-content:center;gap:0;margin-top:36px;background:rgba(255,255,255,.08);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);border-radius:12px;overflow:hidden;max-width:420px;margin-left:auto;margin-right:auto}
+.hstat{text-align:center;padding:14px 28px;flex:1;border-right:1px solid rgba(255,255,255,.12)}
+.hstat:last-child{border-right:none}
+.hstat-num{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:#93c5fd}
+.hstat-label{font-size:.65rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.07em;margin-top:2px}
+
+/* FEATURES BAR */
+.features-bar{background:var(--surface);border-bottom:1px solid var(--border)}
+.features-inner{max-width:960px;margin:0 auto;display:flex;justify-content:center;gap:0}
+.feat-item{display:flex;align-items:center;gap:8px;padding:16px 24px;border-right:1px solid var(--border);font-size:.8rem;color:var(--muted)}
+.feat-item:last-child{border-right:none}
+.feat-item strong{color:var(--ink);font-weight:600}
+
+/* SECTION */
+.section{max-width:960px;margin:0 auto;padding:36px 20px}
+.section-title{font-family:'Syne',sans-serif;font-size:1.35rem;font-weight:700;margin-bottom:6px}
+.section-sub{color:var(--muted);font-size:.87rem;margin-bottom:22px}
+
+/* MAP */
+.map-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.map-inner{max-width:960px;margin:0 auto;padding:22px 20px}
+.map-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.map-header h2{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700}
+.map-empty{text-align:center;padding:32px;background:var(--bg);border-radius:var(--radius);border:2px dashed var(--border);color:var(--muted);font-size:.85rem;margin-bottom:14px}
+.map-empty-icon{font-size:2.5rem;display:block;margin-bottom:8px}
+#map-home,#map-pisos{height:320px;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden}
+
+/* FILTER BAR */
+.filter-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 20px;position:sticky;top:58px;z-index:800}
+.filter-inner{max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.fg-filter{display:flex;flex-direction:column;gap:3px}
+.fg-filter label{font-size:.63rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.fg-filter select,.fg-filter input{padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:'DM Sans',sans-serif;font-size:.8rem;background:#fff;color:var(--ink);outline:none;transition:border-color .2s}
+.fg-filter select:focus,.fg-filter input:focus{border-color:var(--primary)}
+.pref-toggle{display:flex;border:1.5px solid var(--border);border-radius:7px;overflow:hidden}
+.pref-btn{background:none;border:none;padding:7px 12px;font-size:.78rem;font-weight:600;cursor:pointer;color:var(--muted);font-family:'DM Sans',sans-serif;transition:all .15s}
+.pref-btn.on-all{background:var(--ink);color:#fff}
+.pref-btn.on-masc{background:var(--primary);color:#fff}
+.pref-btn.on-fem{background:#be185d;color:#fff}
+.filter-reset{background:none;border:1.5px solid var(--border);border-radius:7px;padding:7px 13px;font-size:.78rem;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.filter-reset:hover{border-color:var(--red);color:var(--red)}
+.filter-count{font-size:.78rem;color:var(--muted);padding-bottom:2px}
+
+/* CARD */
+.listings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.piso-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:box-shadow .2s,transform .2s;cursor:pointer;position:relative}
+.piso-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.1);transform:translateY(-3px)}
+.piso-card.featured{border-color:var(--gold-light);box-shadow:0 0 0 2px rgba(180,83,9,.1)}
+.piso-card.comparte-card-type{border-color:#c4b5fd;box-shadow:0 0 0 2px rgba(109,40,217,.08)}
+.card-img-wrap{height:140px;background:linear-gradient(135deg,#e8e4dc,#d4cfc5);display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden}
+.feat-badge{position:absolute;top:10px;left:10px;background:var(--gold);color:#fff;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em}
+.comparte-badge{position:absolute;top:10px;left:10px;background:var(--purple);color:#fff;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em}
+.fav-btn{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.92);border:none;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:transform .2s;z-index:5;line-height:1}
+.fav-btn:hover{transform:scale(1.2)}
+.card-body{padding:14px}
+.card-price{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--primary)}
+.card-price span{font-size:.73rem;font-weight:400;color:var(--muted);font-family:'DM Sans',sans-serif}
+.card-title{font-weight:600;font-size:.87rem;margin-top:3px;color:var(--ink);line-height:1.3}
+.card-meta{font-size:.74rem;color:var(--muted);margin-top:4px}
+.card-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px}
+.ctag{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:2px 7px;font-size:.66rem;color:var(--muted)}
+.ctag.avail{background:var(--green-bg);border-color:var(--green-light);color:var(--green)}
+.ctag.purp{background:var(--purple-bg);border-color:#c4b5fd;color:var(--purple)}
+.ctag.masc{background:#eff6ff;border-color:#93c5fd;color:var(--primary)}
+.ctag.fem{background:#fff1f2;border-color:#fda4af;color:#be185d}
+
+/* COMPARTE GRID */
+.comparte-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.comp-card{background:var(--surface);border:1px solid #c4b5fd;border-radius:var(--radius);padding:18px;transition:box-shadow .2s,transform .2s;cursor:pointer;position:relative}
+.comp-card:hover{box-shadow:0 6px 24px rgba(109,40,217,.12);transform:translateY(-2px)}
+.cc-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.cc-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--purple),#a78bfa);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.cc-name{font-weight:700;font-size:.92rem}
+.cc-uni{font-size:.74rem;color:var(--muted)}
+.cc-desc{font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:12px}
+.cc-tags{display:flex;gap:5px;flex-wrap:wrap}
+.cc-tag{background:var(--purple-bg);border:1px solid #c4b5fd;border-radius:4px;padding:2px 8px;font-size:.67rem;color:var(--purple)}
+.cc-footer{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}
+.cc-price{font-family:'Syne',sans-serif;font-weight:800;color:var(--purple);font-size:1rem}
+.cc-price span{font-size:.72rem;font-weight:400;color:var(--muted)}
+.cc-spots{font-size:.72rem;background:var(--purple-bg);color:var(--purple);border-radius:4px;padding:3px 8px;font-weight:600}
+
+/* FORMS */
+.form-wrap{max-width:580px;margin:0 auto;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:32px}
+.form-title{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:6px}
+.form-sub{font-size:.84rem;color:var(--muted);margin-bottom:24px;line-height:1.6}
+.fg{margin-bottom:15px}
+.fg label{display:block;font-size:.75rem;font-weight:600;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
+.fg input,.fg select,.fg textarea{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s;background:#fff;color:var(--ink)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--primary)}
+.fg textarea{resize:vertical;min-height:80px}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.submit-btn{width:100%;padding:13px;background:var(--primary);color:#fff;border:none;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.92rem;font-weight:700;cursor:pointer;transition:background .15s;margin-top:8px}
+.submit-btn:hover{background:#1e40af}
+.submit-btn.green-btn{background:var(--green)}
+.submit-btn.green-btn:hover{background:#064e3b}
+.submit-btn.purple-btn{background:var(--purple)}
+.submit-btn.purple-btn:hover{background:#5b21b6}
+.form-note{font-size:.73rem;color:var(--muted);text-align:center;margin-top:10px;line-height:1.5}
+.success-box{background:var(--green-bg);border:1px solid var(--green-light);border-radius:9px;padding:24px;text-align:center;display:none}
+.success-box .si{font-size:2.5rem;display:block;margin-bottom:10px}
+.success-box p{font-size:.9rem;color:var(--green);line-height:1.6}
+
+/* TYPE PICKER */
+.type-picker{display:flex;gap:10px;margin-bottom:20px}
+.type-opt{flex:1;border:2px solid var(--border);border-radius:9px;padding:12px;cursor:pointer;text-align:center;transition:all .15s}
+.type-opt:hover{border-color:var(--primary)}
+.type-opt.selected{border-color:var(--primary);background:var(--primary-bg)}
+.type-opt.selected.purple-type{border-color:var(--purple);background:var(--purple-bg)}
+.type-opt .to-icon{font-size:1.5rem;display:block;margin-bottom:4px}
+.type-opt .to-label{font-size:.78rem;font-weight:600}
+
+/* GENDER PICKER */
+.gender-picker{display:flex;gap:8px}
+.gopt{flex:1;border:2px solid var(--border);border-radius:9px;padding:10px 6px;cursor:pointer;text-align:center;transition:all .15s}
+.gopt:hover{border-color:var(--primary)}
+.gopt .go-icon{font-size:1.3rem;display:block;margin-bottom:3px}
+.gopt .go-lbl{font-size:.72rem;font-weight:600}
+.gopt.sel-all{border-color:var(--green);background:var(--green-bg)}
+.gopt.sel-masc{border-color:var(--primary);background:var(--primary-bg)}
+.gopt.sel-fem{border-color:#be185d;background:#fff1f2}
+
+/* CONTACT CARD */
+.contact-card{background:linear-gradient(135deg,var(--primary-bg),#e0f2fe);border:1.5px solid var(--primary-light);border-radius:10px;padding:16px;margin-top:14px}
+.contact-card-title{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--primary);margin-bottom:10px}
+.contact-row{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid rgba(147,197,253,.3)}
+.contact-row:last-child{border-bottom:none}
+.c-icon{font-size:1.1rem;flex-shrink:0}
+.c-val{font-size:.86rem;color:var(--ink);font-weight:500;flex:1;word-break:break-all}
+.c-val a{color:var(--primary);text-decoration:none}
+.c-copy{background:none;border:1px solid var(--border);border-radius:5px;padding:3px 9px;font-size:.68rem;cursor:pointer;color:var(--muted);font-family:'DM Sans',sans-serif;white-space:nowrap}
+.c-copy:hover{border-color:var(--primary);color:var(--primary)}
+
+/* ADMIN */
+.admin-login{max-width:400px;margin:60px auto;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:36px}
+.admin-login h2{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:6px}
+.admin-login p{font-size:.82rem;color:var(--muted);margin-bottom:22px}
+.admin-panel{max-width:960px;margin:0 auto;padding:28px 20px}
+.admin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:10px}
+.admin-header h2{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:700}
+.logout-btn{background:none;border:1px solid var(--border);padding:7px 16px;border-radius:7px;font-size:.8rem;cursor:pointer;color:var(--muted)}
+.logout-btn:hover{border-color:var(--red);color:var(--red)}
+.admin-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:22px;overflow-x:auto}
+.atab{background:none;border:none;border-bottom:2px solid transparent;padding:9px 16px;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;color:var(--muted);transition:all .15s;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.atab.on{color:var(--primary);border-bottom-color:var(--primary)}
+.adm-section{display:none}
+.adm-section.on{display:block}
+.pending-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:12px;display:flex;align-items:flex-start;gap:14px}
+.pending-info{flex:1;min-width:0}
+.pending-name{font-weight:700;font-size:.9rem;margin-bottom:3px}
+.pending-meta{font-size:.76rem;color:var(--muted);line-height:1.8}
+.pending-actions{display:flex;gap:7px;flex-shrink:0;flex-wrap:wrap}
+.approve-btn{background:var(--green-bg);border:1px solid var(--green-light);color:var(--green);padding:6px 12px;border-radius:6px;font-size:.78rem;font-weight:600;cursor:pointer}
+.approve-btn:hover{background:#d1fae5}
+.reject-btn{background:var(--red-bg);border:1px solid #fca5a5;color:var(--red);padding:6px 12px;border-radius:6px;font-size:.78rem;font-weight:600;cursor:pointer}
+.reject-btn:hover{background:#fee2e2}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.badge.pending{background:#fef3c7;color:#92400e}
+.badge.approved{background:var(--green-bg);color:var(--green)}
+.badge.rejected{background:var(--red-bg);color:var(--red)}
+.empty-state{text-align:center;padding:40px 20px;color:var(--muted);font-size:.86rem}
+.empty-state span{font-size:2.5rem;display:block;margin-bottom:10px}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:22px}
+.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
+.stat-box .snum{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--primary)}
+.stat-box .slabel{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+
+/* FAVS */
+.favs-empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.favs-empty .fe-icon{font-size:3rem;display:block;margin-bottom:12px}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--ink);color:#fff;padding:12px 20px;border-radius:9px;font-size:.84rem;font-weight:500;z-index:9999;transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none;max-width:300px}
+.toast.show{transform:none;opacity:1}
+
+/* PHOTO UPLOAD */
+.photo-upload-area{border:2px dashed var(--border);border-radius:10px;padding:20px;text-align:center;cursor:pointer;transition:all .2s;background:var(--bg);margin-bottom:8px}
+.photo-upload-area:hover,.photo-upload-area.drag-over{border-color:var(--primary);background:var(--primary-bg)}
+.photo-upload-icon{font-size:2rem;display:block;margin-bottom:6px}
+.photo-upload-text{font-size:.82rem;color:var(--muted)}
+.photo-upload-text strong{color:var(--primary)}
+.photo-previews{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.photo-thumb{position:relative;width:80px;height:70px;border-radius:7px;overflow:hidden;border:1.5px solid var(--border)}
+.photo-thumb img{width:100%;height:100%;object-fit:cover}
+.photo-thumb-del{position:absolute;top:2px;right:2px;background:rgba(0,0,0,.65);color:#fff;border:none;border-radius:50%;width:18px;height:18px;font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+
+/* CARD IMAGE */
+.card-img-slider{height:140px;position:relative;overflow:hidden;background:#e8e4dc}
+.card-img-slide{width:100%;height:140px;object-fit:cover;display:none}
+.card-img-slide.active{display:block}
+.card-img-dots{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);display:flex;gap:4px}
+.card-img-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);border:none;padding:0;cursor:pointer}
+.card-img-dot.on{background:#fff}
+
+/* MODAL GALLERY */
+.modal-gallery{display:flex;gap:8px;overflow-x:auto;margin-bottom:14px;scrollbar-width:none}
+.modal-gallery::-webkit-scrollbar{display:none}
+.modal-gallery-img{width:200px;height:130px;object-fit:cover;border-radius:8px;flex-shrink:0;cursor:pointer;transition:opacity .2s}
+.modal-gallery-img:hover{opacity:.85}
+.modal-gallery-img.main-img{width:100%;height:200px;margin-bottom:0}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:2000;align-items:center;justify-content:center;flex-direction:column}
+.lightbox.open{display:flex}
+.lightbox img{max-width:92vw;max-height:80vh;border-radius:8px;object-fit:contain}
+.lb-close{position:absolute;top:16px;right:20px;background:none;border:none;color:#fff;font-size:1.8rem;cursor:pointer}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:none;color:#fff;font-size:1.6rem;cursor:pointer;padding:10px 14px;border-radius:8px}
+.lb-prev{left:12px}.lb-next{right:12px}
+
+/* DETAIL MODAL OVERRIDE - grande y bonito */
+#detail-overlay .modal-box {
+  max-width: 680px !important;
+  padding: 0 !important;
+  overflow: hidden;
+  border-radius: 18px !important;
+}
+.detail-gallery { width:100%; max-height:280px; overflow:hidden; position:relative; background:#1a1510; }
+.detail-gallery img { width:100%; height:280px; object-fit:cover; display:block; }
+.detail-gallery-multi { display:flex; height:280px; gap:3px; }
+.detail-gallery-main { flex:2; overflow:hidden; }
+.detail-gallery-main img { width:100%; height:280px; object-fit:cover; cursor:pointer; }
+.detail-gallery-side { flex:1; display:flex; flex-direction:column; gap:3px; overflow:hidden; }
+.detail-gallery-side img { flex:1; width:100%; object-fit:cover; cursor:pointer; min-height:0; }
+.detail-gallery-more { position:absolute; bottom:10px; right:10px; background:rgba(0,0,0,.6); color:#fff; font-size:.75rem; font-weight:700; padding:5px 12px; border-radius:20px; cursor:pointer; backdrop-filter:blur(4px); }
+.detail-no-photo { height:160px; display:flex; align-items:center; justify-content:center; font-size:4rem; background:linear-gradient(135deg,#1a1510,#2a2018); }
+.detail-body { padding:24px 28px 28px; }
+.detail-city-badge { display:inline-flex; align-items:center; gap:5px; padding:4px 12px; border-radius:20px; font-size:.72rem; font-weight:700; color:#fff; margin-bottom:12px; }
+.detail-title { font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:800; color:var(--ink); margin-bottom:8px; line-height:1.2; }
+.detail-price-row { display:flex; align-items:baseline; gap:6px; margin-bottom:16px; }
+.detail-price { font-size:2rem; font-weight:800; color:#1d4ed8; font-family:'Syne',sans-serif; }
+.detail-price span { font-size:.85rem; font-weight:400; color:var(--muted); }
+.detail-chips { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+.detail-chip { display:inline-flex; align-items:center; gap:4px; background:var(--bg); border:1px solid var(--border); border-radius:20px; padding:5px 12px; font-size:.78rem; font-weight:500; }
+.detail-desc { font-size:.85rem; color:var(--ink); line-height:1.7; background:var(--bg); border-radius:10px; padding:14px 16px; margin-bottom:18px; }
+.detail-contact { background:linear-gradient(135deg,#eff6ff,#f0fdf4); border:1.5px solid #bfdbfe; border-radius:12px; padding:18px 20px; margin-bottom:16px; }
+.detail-contact-title { font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#1d4ed8; margin-bottom:12px; }
+.detail-contact-row { display:flex; align-items:center; gap:10px; margin-bottom:8px; font-size:.85rem; }
+.detail-contact-row:last-child { margin-bottom:0; }
+.detail-contact-icon { width:28px; height:28px; border-radius:50%; background:#1d4ed8; color:#fff; display:flex; align-items:center; justify-content:center; font-size:.85rem; flex-shrink:0; }
+.detail-copy-btn { margin-left:auto; background:#1d4ed8; color:#fff; border:none; border-radius:6px; padding:4px 10px; font-size:.72rem; font-weight:600; cursor:pointer; font-family:'DM Sans',sans-serif; }
+.detail-fav-btn { position:absolute; top:14px; right:14px; background:rgba(0,0,0,.45); border:none; border-radius:50%; width:36px; height:36px; font-size:1.1rem; cursor:pointer; backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; z-index:10; }
+.detail-close-btn { width:100%; padding:13px; background:var(--ink); color:#fff; border:none; border-radius:10px; font-size:.88rem; font-weight:600; cursor:pointer; font-family:'DM Sans',sans-serif; margin-top:4px; }
+.detail-manage-note { background:#fffbeb; border:1px solid #fcd34d; border-radius:8px; padding:10px 14px; font-size:.76rem; color:#92400e; margin-bottom:14px; }
+.owner-banner{background:linear-gradient(135deg,#fef3c7,#fffbeb);border:1.5px solid #fcd34d;border-radius:10px;padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.owner-banner-txt{flex:1;font-size:.82rem;color:#92400e;font-weight:500}
+.owner-btn{padding:7px 14px;border-radius:7px;font-size:.78rem;font-weight:700;cursor:pointer;border:none;font-family:'DM Sans',sans-serif}
+.owner-edit-btn{background:var(--primary);color:#fff}
+.owner-del-btn{background:var(--red-bg);border:1px solid #fca5a5;color:var(--red)}
+.owner-del-btn:hover{background:#fee2e2}
+
+/* OWNER VERIFY MODAL */
+#owner-modal-box .fg label{font-size:.77rem}
+#owner-modal-box h3{margin-bottom:16px}
+.verify-info{font-size:.8rem;color:var(--muted);background:var(--bg);border-radius:7px;padding:10px 12px;margin-bottom:14px;line-height:1.6}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal-box{background:#fff;border-radius:14px;padding:26px;width:100%;max-width:460px;animation:fadeIn .2s ease;max-height:90vh;overflow-y:auto}
+.modal-box h3{font-family:'Syne',sans-serif;font-size:1.05rem;margin-bottom:10px;padding-right:40px}
+.modal-fav-btn{position:absolute;top:18px;right:18px;background:var(--bg);border:1.5px solid var(--border);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:transform .2s}
+.modal-fav-btn:hover{transform:scale(1.15)}
+
+/* SECRET ADMIN TRIGGER */
+#admin-secret-zone{position:fixed;bottom:0;right:0;width:50px;height:50px;z-index:9998;cursor:default}
+
+@media(max-width:640px){
+  .fg-row,.fg-row3{grid-template-columns:1fr}
+  .topbar{padding:0 10px;gap:5px}
+  .brand-name{font-size:.9rem}
+  .nav-btn{padding:5px 8px;font-size:.7rem}
+  .hero{height:420px}
+  .hstat{padding:10px 14px}
+  .features-inner{flex-wrap:wrap}
+  .feat-item{padding:12px 14px}
+  .type-picker,.gender-picker{flex-direction:column}
+  .filter-inner{gap:8px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <a class="brand" href="#" onclick="showView('home');return false">
+    <div class="brand-icon">🏠</div>
+    <span class="brand-name">Piso<em>Estudio</em></span>
+  </a>
+  <svg width="26" height="26" viewBox="0 0 26 26" style="margin-left:6px;flex-shrink:0" title="Aragón">
+    <rect width="26" height="26" rx="4" fill="#FCDD09"/>
+    <rect x="0" y="3.5" width="26" height="4.5" fill="#CF0921"/>
+    <rect x="0" y="11" width="26" height="4.5" fill="#CF0921"/>
+    <rect x="0" y="18.5" width="26" height="4.5" fill="#CF0921"/>
+  </svg>
+  <div style="display:flex;gap:5px;margin-left:10px;flex-shrink:0">
+    <span style="background:#1e3a8a;color:#fff;font-size:.62rem;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.04em">UniZar</span>
+    <span style="background:#dc2626;color:#fff;font-size:.62rem;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.04em">Zaragoza</span>
+    <span style="background:#ea7316;color:#fff;font-size:.62rem;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.04em">Huesca</span>
+    <span style="background:#16a34a;color:#fff;font-size:.62rem;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.04em">Teruel</span>
+  </div>
+  <div class="topbar-nav">
+    <button class="nav-btn" id="nav-pisos" onclick="showView('pisos')">🏠 Ver pisos</button>
+    <button class="nav-btn purp" id="nav-comparte" onclick="showView('comparte')">🤝 Comparte piso</button>
+    <button class="nav-btn cta" id="nav-ofrecer" onclick="showView('ofrecer')">+ Publicar</button>
+    <button class="nav-btn" id="nav-buscar" onclick="showView('buscar')">🔍 Buscar</button>
+    <button class="nav-btn fav-nav" id="nav-favs" onclick="showView('favoritos')">❤️ <span id="fav-count"></span></button>
+    <div class="lang-toggle">
+      <button class="lang-btn on" onclick="setLang('es',this)">ES</button>
+      <button class="lang-btn" onclick="setLang('en',this)">EN</button>
+    </div>
+  </div>
+</div>
+
+<!-- HOME -->
+<div class="view active" id="view-home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag" id="h-tag">🎓 Aragón · UniZar · Huesca · Teruel</div>
+      <h1 id="h-title">Tu piso de estudiante en <em>Aragón</em> a un clic</h1>
+      <p id="h-sub">Pisos verificados cerca de los campus de UniZar. Publica, busca o encuentra compañeros de piso.</p>
+      <div class="hero-btns">
+        <button class="hero-btn primary" onclick="showView('ofrecer')" id="h-btn1">🏠 Tengo un piso</button>
+        <button class="hero-btn secondary" onclick="showView('buscar')" id="h-btn2">🔍 Busco piso</button>
+        <button class="hero-btn purple-btn" onclick="showView('comparte')" id="h-btn3">🤝 Busco compañeros</button>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="hstat-num" id="stat-pisos">0</div><div class="hstat-label" id="stat-pisos-lbl">pisos activos</div></div>
+        <div class="hstat"><div class="hstat-num" id="stat-comp">0</div><div class="hstat-label" id="stat-comp-lbl">buscan compañero</div></div>
+        <div class="hstat"><div class="hstat-num" id="stat-sol">0</div><div class="hstat-label" id="stat-sol-lbl">solicitudes</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="features-bar">
+    <div class="features-inner">
+      <div class="feat-item">✅ <span id="feat1">Anuncios verificados por admin</span></div>
+      <div class="feat-item">⭐ <span id="feat2">Anuncios destacados disponibles</span></div>
+      <div class="feat-item">🤝 <span id="feat3">Encuentra compañeros de piso</span></div>
+      <div class="feat-item">🎓 <span id="feat4">Exclusivo UniZar · Aragón</span></div>
+    </div>
+  </div>
+  <div class="map-section">
+    <div class="map-inner">
+      <div class="map-header"><h2 id="map-title-home">Pisos disponibles en Aragón</h2></div>
+      <div class="map-empty" id="map-empty-home" style="display:none"><span class="map-empty-icon">🗺️</span><span id="map-empty-txt">Aún no hay pisos publicados. ¡Sé el primero!</span></div>
+      <div id="map-home" style="display:block"></div>
+    </div>
+  </div>
+  <div class="section">
+    <h2 class="section-title" id="listings-title">Pisos disponibles</h2>
+    <p class="section-sub" id="listings-sub">Todos los anuncios aprobados aparecen aquí.</p>
+    <div class="listings-grid" id="home-grid"></div>
+  </div>
+</div>
+
+<!-- PISOS -->
+<div class="view" id="view-pisos">
+  <div class="filter-bar">
+    <div class="filter-inner">
+      <div class="fg-filter">
+        <label>Ciudad</label>
+        <select id="fil-ciudad" onchange="onFilCiudadChange()">
+          <option value="">Todas</option>
+          <option value="Zaragoza">Zaragoza</option>
+          <option value="Huesca">Huesca</option>
+          <option value="Teruel">Teruel</option>
+        </select>
+      </div>
+      <div class="fg-filter">
+        <label id="fil-l-zona">Barrio/Zona</label>
+        <select id="fil-zona" onchange="applyFilters()">
+          <option value="">Todas</option>
+        </select>
+      </div>
+      <div class="fg-filter">
+        <label id="fil-l-pmin">Precio mín</label>
+        <input type="number" id="fil-pmin" placeholder="0" style="width:75px" oninput="applyFilters()"/>
+      </div>
+      <div class="fg-filter">
+        <label id="fil-l-pmax">Precio máx</label>
+        <input type="number" id="fil-pmax" placeholder="∞" style="width:75px" oninput="applyFilters()"/>
+      </div>
+      <div class="fg-filter">
+        <label id="fil-l-hab">Habitaciones</label>
+        <select id="fil-hab" onchange="applyFilters()" style="width:100px">
+          <option value="">Todas</option>
+          <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+          <option value="4">4</option><option value="5">5+</option>
+        </select>
+      </div>
+      <div class="fg-filter">
+        <label id="fil-l-mueb">Amueblado</label>
+        <select id="fil-mueb" onchange="applyFilters()" style="width:100px">
+          <option value="">Todos</option>
+          <option value="si" id="fil-mueb-si">Sí</option>
+          <option value="no" id="fil-mueb-no">No</option>
+        </select>
+      </div>
+      <div class="fg-filter">
+        <label id="fil-l-tipo">Tipo</label>
+        <select id="fil-tipo" onchange="applyFilters()" style="width:110px">
+          <option value="">Todos</option>
+          <option value="piso" id="fil-tipo-piso">Piso</option>
+          <option value="comparte" id="fil-tipo-comp">Comparte</option>
+        </select>
+      </div>
+      <div class="fg-filter">
+        <label id="fil-l-orden">Ordenar</label>
+        <select id="fil-orden" onchange="applyFilters()" style="width:110px">
+          <option value="recent" id="fil-ord-rec">Reciente</option>
+          <option value="asc" id="fil-ord-asc">Precio ↑</option>
+          <option value="desc" id="fil-ord-desc">Precio ↓</option>
+        </select>
+      </div>
+      <div class="fg-filter">
+        <label id="fil-l-pref">Preferencia</label>
+        <div class="pref-toggle">
+          <button class="pref-btn on-all" id="pref-all" onclick="setPref('all',this)">👥</button>
+          <button class="pref-btn" id="pref-masc" onclick="setPref('masc',this)">👨</button>
+          <button class="pref-btn" id="pref-fem" onclick="setPref('fem',this)">👩</button>
+        </div>
+      </div>
+      <button class="filter-reset" id="fil-reset" onclick="resetFilters()">✕ Limpiar</button>
+      <span class="filter-count" id="fil-count"></span>
+    </div>
+  </div>
+  <div class="map-section" style="padding-top:20px">
+    <div class="map-inner">
+      <div class="map-header"><h2 id="map-title-pisos">Mapa de pisos en Aragón</h2></div>
+      <div class="map-empty" id="map-empty-pisos" style="display:none"><span class="map-empty-icon">🗺️</span><span id="map-empty-txt2">Aún no hay pisos publicados.</span></div>
+      <div id="map-pisos" style="display:block"></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="listings-grid" id="pisos-grid"></div>
+  </div>
+</div>
+
+<!-- COMPARTE -->
+<div class="view" id="view-comparte">
+  <div class="section">
+    <h2 class="section-title" id="comp-title"></h2>
+    <p class="section-sub" id="comp-sub"></p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px">
+      <button class="hero-btn purple-btn" style="padding:10px 20px;font-size:.85rem" onclick="openOfrecerComparte()" id="comp-btn-ofrecer"></button>
+      <button class="hero-btn secondary" style="padding:10px 20px;font-size:.85rem;background:var(--bg);color:var(--ink);border:1px solid var(--border)" onclick="showView('buscar')" id="comp-btn-buscar"></button>
+    </div>
+    <div class="comparte-grid" id="comparte-grid"></div>
+  </div>
+</div>
+
+<!-- OFRECER -->
+<div class="view" id="view-ofrecer">
+  <div class="section">
+    <div class="form-wrap">
+      <h2 class="form-title" id="of-title"></h2>
+      <p class="form-sub" id="of-sub"></p>
+      <div class="success-box" id="of-success"><span class="si">✅</span><p id="of-success-msg"></p></div>
+      <div id="of-form">
+        <div class="fg" style="margin-bottom:20px">
+          <label id="of-l-tipo"></label>
+          <div class="type-picker">
+            <div class="type-opt selected" id="tipo-piso" onclick="selectTipo('piso')">
+              <span class="to-icon">🏠</span><span class="to-label" id="tipo-piso-lbl"></span>
+            </div>
+            <div class="type-opt" id="tipo-comparte" onclick="selectTipo('comparte')">
+              <span class="to-icon">🤝</span><span class="to-label" id="tipo-comparte-lbl"></span>
+            </div>
+          </div>
+        </div>
+        <div class="fg"><label id="of-l-titulo"></label><input type="text" id="of-titulo" placeholder="Ej: Piso luminoso junto al Campus Río Ebro"/></div>
+        <div class="fg-row">
+          <div class="fg"><label>Ciudad</label>
+            <select id="of-ciudad" onchange="onOfCiudadChange()">
+              <option value="">— Selecciona ciudad —</option>
+              <option value="Zaragoza">Zaragoza</option>
+              <option value="Huesca">Huesca</option>
+              <option value="Teruel">Teruel</option>
+            </select>
+          </div>
+          <div class="fg"><label id="of-l-barrio"></label>
+            <select id="of-barrio">
+              <option value="">— Selecciona barrio —</option>
+            </select>
+          </div>
+          <div class="fg"><label id="of-l-price"></label><input type="number" id="of-price" placeholder="320"/></div>
+        </div>
+        <div class="fg"><label id="of-l-addr"></label><input type="text" id="of-addr" placeholder="Ej: Calle María de Luna 6"/></div>
+        <div class="fg-row3">
+          <div class="fg"><label id="of-l-hab"></label>
+            <select id="of-hab"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+          </div>
+          <div class="fg"><label id="of-l-m2"></label><input type="number" id="of-m2" placeholder="55"/></div>
+          <div class="fg"><label id="of-l-amueblado"></label><select id="of-amueblado"></select></div>
+        </div>
+        <!-- COMPARTE EXTRAS -->
+        <div id="comparte-extras" style="display:none">
+          <div style="background:var(--purple-bg);border:1px solid #c4b5fd;border-radius:8px;padding:14px;margin-bottom:16px;font-size:.82rem;color:var(--purple)">
+            🤝 <span id="of-comparte-note"></span>
+          </div>
+          <div class="fg-row">
+            <div class="fg"><label id="of-l-plazas"></label>
+              <select id="of-plazas"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+            </div>
+            <div class="fg"><label id="of-l-perfil"></label>
+              <select id="of-perfil"></select>
+            </div>
+          </div>
+          <div class="fg"><label id="of-l-normas"></label><textarea id="of-normas" rows="2" placeholder="Ej: No fumadores, mascotas permitidas..."></textarea></div>
+        </div>
+        <!-- PREFERENCIA GÉNERO -->
+        <div class="fg">
+          <label id="of-l-genero">Preferencia de compañero/a</label>
+          <div class="gender-picker">
+            <div class="gopt sel-all" id="gopt-all" onclick="selectGender('all')">
+              <span class="go-icon">👥</span><span class="go-lbl" id="g-all-lbl">Sin preferencia</span>
+            </div>
+            <div class="gopt" id="gopt-masc" onclick="selectGender('masc')">
+              <span class="go-icon">👨</span><span class="go-lbl" id="g-masc-lbl">Solo chicos</span>
+            </div>
+            <div class="gopt" id="gopt-fem" onclick="selectGender('fem')">
+              <span class="go-icon">👩</span><span class="go-lbl" id="g-fem-lbl">Solo chicas</span>
+            </div>
+          </div>
+        </div>
+        <div class="fg">
+          <label style="display:block;font-size:.75rem;font-weight:600;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em">📷 Fotos del inmueble <span style="font-weight:400;text-transform:none">(opcional, máx. 6)</span></label>
+          <div class="photo-upload-area" id="photo-drop-zone" onclick="document.getElementById('photo-input').click()" ondragover="photoDragOver(event)" ondragleave="photoDragLeave(event)" ondrop="photoDrop(event)">
+            <span class="photo-upload-icon">🖼️</span>
+            <div class="photo-upload-text">Haz clic o arrastra fotos aquí<br><strong>JPG, PNG, WEBP</strong> · máx 2MB por foto</div>
+          </div>
+          <input type="file" id="photo-input" accept="image/*" multiple style="display:none" onchange="handlePhotoInput(event)"/>
+          <div class="photo-previews" id="photo-previews"></div>
+        </div>
+        <div class="fg"><label id="of-l-desc"></label><textarea id="of-desc" placeholder="Describe el piso, qué incluye..."></textarea></div>
+        <div class="fg-row">
+          <div class="fg"><label id="of-l-nombre"></label><input type="text" id="of-nombre"/></div>
+          <div class="fg"><label id="of-l-tel"></label><input type="tel" id="of-tel" placeholder="+34 600 000 000"/></div>
+        </div>
+        <div class="fg"><label id="of-l-email"></label><input type="email" id="of-email" placeholder="propietario@email.com"/></div>
+        <button class="submit-btn" id="of-submit" onclick="submitOfrecer()"></button>
+        <p class="form-note" id="of-note"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BUSCAR -->
+<div class="view" id="view-buscar">
+  <div class="section">
+    <div class="form-wrap">
+      <h2 class="form-title" id="bu-title"></h2>
+      <p class="form-sub" id="bu-sub"></p>
+      <div class="success-box" id="bu-success"><span class="si">✅</span><p id="bu-success-msg"></p></div>
+      <div id="bu-form">
+        <div class="fg-row">
+          <div class="fg"><label id="bu-l-nombre"></label><input type="text" id="bu-nombre"/></div>
+          <div class="fg"><label id="bu-l-email"></label><input type="email" id="bu-email" placeholder="estudiante@unizar.es"/></div>
+        </div>
+        <div class="fg"><label id="bu-l-carrera"></label><input type="text" id="bu-carrera" placeholder="Ej: Ingeniería Informática"/></div>
+        <div class="fg-row">
+          <div class="fg"><label id="bu-l-pmax"></label><input type="number" id="bu-pmax" placeholder="400"/></div>
+          <div class="fg"><label id="bu-l-hab"></label>
+            <select id="bu-hab">
+              <option value="cualquiera" id="bu-cualquiera"></option>
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label>Ciudad</label>
+            <select id="bu-ciudad" onchange="onBuCiudadChange()">
+              <option value="">Cualquier ciudad</option>
+              <option value="Zaragoza">Zaragoza</option>
+              <option value="Huesca">Huesca</option>
+              <option value="Teruel">Teruel</option>
+            </select>
+          </div>
+          <div class="fg"><label id="bu-l-zona"></label>
+            <select id="bu-zona">
+              <option value="">Cualquier zona</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg"><label id="bu-l-tipo"></label>
+          <select id="bu-tipo">
+            <option id="bu-tipo-todos"></option>
+            <option value="piso" id="bu-tipo-piso"></option>
+            <option value="comparte" id="bu-tipo-comparte"></option>
+          </select>
+        </div>
+        <div class="fg">
+          <label id="bu-l-genero">¿Con quién quieres compartir?</label>
+          <div class="gender-picker">
+            <div class="gopt sel-all" id="bu-gopt-all" onclick="selectBuGender('all')"><span class="go-icon">👥</span><span class="go-lbl">Sin preferencia</span></div>
+            <div class="gopt" id="bu-gopt-masc" onclick="selectBuGender('masc')"><span class="go-icon">👨</span><span class="go-lbl">Chicos</span></div>
+            <div class="gopt" id="bu-gopt-fem" onclick="selectBuGender('fem')"><span class="go-icon">👩</span><span class="go-lbl">Chicas</span></div>
+          </div>
+        </div>
+        <div class="fg"><label id="bu-l-msg"></label><textarea id="bu-msg" rows="3"></textarea></div>
+        <button class="submit-btn green-btn" id="bu-submit" onclick="submitBuscar()"></button>
+        <p class="form-note" id="bu-note"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAVORITOS -->
+<div class="view" id="view-favoritos">
+  <div class="section">
+    <h2 class="section-title" id="favs-title">❤️ Mis favoritos</h2>
+    <p class="section-sub" id="favs-sub"></p>
+    <div class="listings-grid" id="favs-grid"></div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div class="view" id="view-admin">
+  <div id="adm-login-wrap">
+    <div class="admin-login">
+      <h2 id="adm-login-title"></h2>
+      <p id="adm-login-sub"></p>
+      <div class="fg"><label id="adm-l-user"></label><input type="text" id="adm-user" autocomplete="username"/></div>
+      <div class="fg"><label id="adm-l-pass"></label><input type="password" id="adm-pass" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+      <button class="submit-btn" id="adm-login-btn" onclick="doLogin()"></button>
+    </div>
+  </div>
+  <div id="adm-panel-wrap" style="display:none">
+    <div class="admin-panel">
+      <div class="admin-header">
+        <h2 id="adm-panel-title"></h2>
+        <button class="logout-btn" id="adm-logout" onclick="doLogout()"></button>
+      </div>
+      <div class="stats-row">
+        <div class="stat-box"><div class="snum" id="adm-s1">0</div><div class="slabel" id="adm-s1l"></div></div>
+        <div class="stat-box"><div class="snum" id="adm-s2">0</div><div class="slabel" id="adm-s2l"></div></div>
+        <div class="stat-box"><div class="snum" id="adm-s3">0</div><div class="slabel" id="adm-s3l"></div></div>
+        <div class="stat-box"><div class="snum" id="adm-s4">0</div><div class="slabel" id="adm-s4l"></div></div>
+        <div class="stat-box"><div class="snum" id="adm-s5">0</div><div class="slabel" id="adm-s5l"></div></div>
+      </div>
+      <div class="admin-tabs">
+        <button class="atab on" id="atab1" onclick="showAdmTab('pend',this)"></button>
+        <button class="atab" id="atab2" onclick="showAdmTab('aprov',this)"></button>
+        <button class="atab" id="atab3" onclick="showAdmTab('cpend',this)"></button>
+        <button class="atab" id="atab4" onclick="showAdmTab('sols',this)"></button>
+      </div>
+      <div class="adm-section on" id="adm-pend"></div>
+      <div class="adm-section" id="adm-aprov"></div>
+      <div class="adm-section" id="adm-cpend"></div>
+      <div class="adm-section" id="adm-sols"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- DETAIL MODAL -->
+<div class="modal-overlay" id="detail-overlay">
+  <div class="modal-box" style="position:relative" id="detail-box"></div>
+</div>
+
+<!-- OWNER VERIFY MODAL -->
+<div class="modal-overlay" id="owner-modal">
+  <div class="modal-box" id="owner-modal-box" style="position:relative;max-width:380px">
+    <h3 id="owner-modal-title">🔑 Verificar identidad</h3>
+    <div class="verify-info" id="owner-modal-info"></div>
+    <div class="fg"><label>Tu email (el que usaste al publicar)</label><input type="email" id="owner-email-input" placeholder="propietario@email.com"/></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button id="owner-confirm-btn" class="submit-btn" style="margin-top:0" onclick="confirmOwnerAction()">Confirmar</button>
+      <button onclick="closeOwnerModal()" style="flex:1;padding:13px;border:1.5px solid var(--border);border-radius:9px;background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.88rem">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <button class="lb-prev" onclick="lbNav(-1,event)">‹</button>
+  <img id="lb-img" src="" alt=""/>
+  <button class="lb-next" onclick="lbNav(1,event)">›</button>
+</div>
+
+<!-- SECRET ADMIN ZONE (invisible, esquina inferior derecha) -->
+<div id="admin-secret-zone"></div>
+
+<!-- FOOTER SEO -->
+<footer style="background:#18140f;color:#a09880;padding:32px 20px;text-align:center;font-size:.78rem;line-height:2;margin-top:40px">
+  <div style="max-width:700px;margin:0 auto">
+    <div style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px">🏠 PisoEstudio Aragón</div>
+    <p>Portal de <strong style="color:#d1c9b8">alquiler de pisos para estudiantes en Aragón</strong>. Encuentra <strong style="color:#d1c9b8">habitaciones, pisos compartidos y estudios</strong> en <strong style="color:#d1c9b8">Zaragoza, Huesca y Teruel</strong> cerca de la universidad.</p>
+    <div style="margin-top:16px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px">
+      <span style="background:#2a2520;padding:4px 12px;border-radius:20px">piso estudiante Zaragoza</span>
+      <span style="background:#2a2520;padding:4px 12px;border-radius:20px">alquiler habitación Huesca</span>
+      <span style="background:#2a2520;padding:4px 12px;border-radius:20px">piso compartido Teruel</span>
+      <span style="background:#2a2520;padding:4px 12px;border-radius:20px">alquiler universitario Aragón</span>
+      <span style="background:#2a2520;padding:4px 12px;border-radius:20px">pisos baratos Zaragoza</span>
+    </div>
+    <div style="margin-top:16px;border-top:1px solid #2a2520;padding-top:12px">
+      © 2025 PisoEstudio Aragón · <a href="mailto:info@pisoestudio.es" style="color:#a09880">Contacto</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+'use strict';
+
+// ── LANG ──────────────────────────────────────────────────────────────────────
+let lang = 'es';
+const T = {
+  es: {
+    navPisos:'🏠 Ver pisos', navComparte:'🤝 Comparte piso', navOfrecer:'+ Publicar', navBuscar:'🔍 Buscar',
+    hTag:'🎓 Aragón · UniZar · Huesca · Teruel',
+    hTitle:'Tu piso de estudiante en <em>Aragón</em> a un clic',
+    hSub:'Pisos verificados cerca de los campus de UniZar. Publica, busca o encuentra compañeros de piso.',
+    hBtn1:'🏠 Tengo un piso', hBtn2:'🔍 Busco piso', hBtn3:'🤝 Busco compañeros',
+    statPisosLbl:'pisos activos', statCompLbl:'buscan compañero', statSolLbl:'solicitudes',
+    feat1:'Anuncios verificados por admin', feat2:'Anuncios destacados disponibles',
+    feat3:'Encuentra compañeros de piso', feat4:'Exclusivo UZ · Campus Zaragoza',
+    mapTitleHome:'Pisos disponibles en Aragón', mapTitlePisos:'Mapa de pisos en Aragón',
+    mapEmptyTxt:'Aún no hay pisos publicados. ¡Sé el primero en publicar el tuyo!',
+    listingsTitle:'Pisos disponibles', listingsSub:'Todos los anuncios aprobados aparecen aquí.',
+    noPisosTxt:'Todavía no hay pisos publicados.',
+    compTitle:'Comparte piso', compSub:'Encuentra compañeros de piso o publica una habitación disponible.',
+    compBtnOfrecer:'🤝 Ofrezco habitación para compartir', compBtnBuscar:'🔍 Busco habitación compartida',
+    noCompTxt:'Aún no hay anuncios de pisos compartidos.',
+    ofTitle:'Publicar anuncio', ofSub:'Tu anuncio será revisado por el administrador antes de publicarse. Menos de 24h.',
+    ofLTipo:'Tipo de anuncio', tiposPiso:'🏠 Piso completo', tiposComparte:'🤝 Habitación / Comparte piso',
+    ofLTitulo:'Título del anuncio', ofLBarrio:'Barrio / Zona', ofLPrice:'Precio mensual (€)',
+    ofLAddr:'Dirección', ofLHab:'Habitaciones totales', ofLM2:'Metros cuadrados',
+    ofLAmueblado:'¿Amueblado?', siNo:['Sí','No'],
+    compartNote:'Indica cuántas plazas tienes y el perfil de compañero que buscas.',
+    ofLPlazas:'Plazas disponibles', ofLPerfil:'Perfil buscado',
+    perfiles:['Estudiante cualquier carrera','Sólo chicas','Sólo chicos','Profesional/Becario'],
+    ofLNormas:'Normas de la casa', ofLDesc:'Descripción',
+    ofLNombre:'Tu nombre', ofLTel:'Teléfono', ofLEmail:'Email',
+    ofSubmit:'Enviar para revisión',
+    ofNote:'Al enviar aceptas la revisión previa. El proceso tarda menos de 24 horas.',
+    ofSuccess:'¡Anuncio enviado! Lo revisaremos y te avisaremos por email cuando esté publicado. ⏳',
+    buTitle:'Busco piso en Aragón', buSub:'Déjanos tu solicitud y te avisaremos cuando aparezcan pisos que encajen.',
+    buLNombre:'Tu nombre', buLEmail:'Email (UZ preferible)', buLCarrera:'Carrera / Grado',
+    buLPmax:'Presupuesto máximo (€/mes)', buLHab:'Nº habitaciones', buCualquiera:'Cualquiera',
+    buLZona:'Zona preferida', buSinPref:'Sin preferencia',
+    buLTipo:'Tipo de alojamiento', buTipoTodos:'Cualquiera', buTipoPiso:'Piso completo', buTipoComparte:'Habitación compartida',
+    buLMsg:'Mensaje adicional (opcional)', buSubmit:'Enviar solicitud',
+    buNote:'Tu información solo se usará para avisarte. No publicamos datos personales.',
+    buSuccess:'¡Solicitud recibida! Te avisaremos cuando haya pisos disponibles. 🏠',
+    admLoginTitle:'Panel de Administración', admLoginSub:'Accede con tus credenciales de administrador.',
+    admLUser:'Usuario', admLPass:'Contraseña', admLoginBtn:'Entrar al panel',
+    admPanelTitle:'⚙️ Panel de Administración', admLogout:'Cerrar sesión',
+    adms1l:'Pendientes', adms2l:'Aprobados', adms3l:'Rechazados', adms4l:'Comparte pend.', adms5l:'Solicitudes',
+    atab1:'Pisos pendientes', atab2:'Pisos aprobados', atab3:'Comparte pendientes', atab4:'Solicitudes',
+    approve:'✓ Aprobar', reject:'✗ Rechazar',
+    badgePending:'Pendiente', badgeApproved:'Aprobado', badgeRejected:'Rechazado',
+    emptyPend:'No hay anuncios pendientes. ✅', emptyAprov:'No hay pisos aprobados aún.',
+    emptyComp:'No hay anuncios de comparte pendientes.', emptySols:'No hay solicitudes.',
+    toastApproved:'✅ Aprobado y publicado.', toastRejected:'🗑 Anuncio rechazado.',
+    toastError:'⚠️ Rellena los campos obligatorios.', toastLoginError:'❌ Credenciales incorrectas.',
+    toastFavAdd:'❤️ Añadido a favoritos.', toastFavDel:'🤍 Quitado de favoritos.', toastCopied:'📋 Copiado.',
+    detailClose:'Cerrar', perMonth:'/mes', rooms:'hab.', m2:'m²',
+    spots:'plazas libres', available:'✓ Disponible',
+    featured:'⭐ Destacado', comparteLbl:'🤝 Comparte',
+    gAll:'Sin preferencia', gMasc:'Solo chicos', gFem:'Solo chicas',
+    filZona:'Zona', filPmin:'Precio mín', filPmax:'Precio máx', filHab:'Habitaciones',
+    filMueb:'Amueblado', filTipo:'Tipo', filOrden:'Ordenar', filPref:'Preferencia',
+    filReset:'✕ Limpiar', filMuebSi:'Sí', filMuebNo:'No',
+    filTipoPiso:'Piso', filTipoComp:'Comparte',
+    filOrdRec:'Reciente', filOrdAsc:'Precio ↑', filOrdDesc:'Precio ↓',
+    filResults:'resultados',
+    favsTitle:'❤️ Mis favoritos', favsSub:'Los pisos que has guardado para comparar.',
+    favsEmpty:'Aún no has guardado ningún favorito. Pulsa el ❤️ en cualquier piso.',
+    contactTitle:'Datos de contacto',
+    ofLGenero:'Preferencia de compañero/a', buLGenero:'¿Con quién quieres compartir?',
+  },
+  en: {
+    navPisos:'🏠 Browse flats', navComparte:'🤝 Share flat', navOfrecer:'+ Publish', navBuscar:'🔍 Find flat',
+    hTag:'🎓 Aragón · UniZar · Huesca · Teruel',
+    hTitle:'Your student flat in <em>Aragón</em> in one click',
+    hSub:'Verified flats near UniZar campuses. List, search or find flatmates.',
+    hBtn1:'🏠 I have a flat', hBtn2:'🔍 Looking for flat', hBtn3:'🤝 Find flatmates',
+    statPisosLbl:'active listings', statCompLbl:'looking for flatmate', statSolLbl:'requests',
+    feat1:'Admin-verified listings', feat2:'Featured listings available',
+    feat3:'Find flatmates easily', feat4:'Exclusive UZ · Zaragoza',
+    mapTitleHome:'Available flats in Aragón', mapTitlePisos:'Flat map in Aragón',
+    mapEmptyTxt:'No flats published yet. Be the first!',
+    listingsTitle:'Available flats', listingsSub:'All approved listings appear here.',
+    noPisosTxt:'No flats published yet.',
+    compTitle:'Share a flat', compSub:'Find flatmates or post a room available in your flat.',
+    compBtnOfrecer:'🤝 I offer a room to share', compBtnBuscar:'🔍 Looking for a shared room',
+    noCompTxt:'No shared flat listings yet.',
+    ofTitle:'Post a listing', ofSub:'Your listing will be reviewed before publishing. Under 24h.',
+    ofLTipo:'Listing type', tiposPiso:'🏠 Whole flat', tiposComparte:'🤝 Room / Share flat',
+    ofLTitulo:'Listing title', ofLBarrio:'Neighbourhood / Area', ofLPrice:'Monthly rent (€)',
+    ofLAddr:'Address', ofLHab:'Total bedrooms', ofLM2:'Square metres',
+    ofLAmueblado:'Furnished?', siNo:['Yes','No'],
+    compartNote:'Indicate how many spots you have and the kind of flatmate you are looking for.',
+    ofLPlazas:'Available spots', ofLPerfil:'Ideal flatmate',
+    perfiles:['Any student','Women only','Men only','Professional/Intern'],
+    ofLNormas:'House rules', ofLDesc:'Description',
+    ofLNombre:'Your name', ofLTel:'Phone', ofLEmail:'Email',
+    ofSubmit:'Submit for review',
+    ofNote:'By submitting you agree to a prior review. The process takes less than 24 hours.',
+    ofSuccess:"Listing submitted! We'll review it and notify you by email when published. ⏳",
+    buTitle:'Looking for a flat in Aragón', buSub:"Leave your request and we'll notify you when matching flats appear.",
+    buLNombre:'Your name', buLEmail:'Email (UZ preferred)', buLCarrera:'Degree / Course',
+    buLPmax:'Max budget (€/month)', buLHab:'No. of bedrooms', buCualquiera:'Any',
+    buLZona:'Preferred area', buSinPref:'No preference',
+    buLTipo:'Type of accommodation', buTipoTodos:'Any', buTipoPiso:'Whole flat', buTipoComparte:'Shared room',
+    buLMsg:'Additional message (optional)', buSubmit:'Send request',
+    buNote:'Your info will only be used to notify you. We do not publish personal data.',
+    buSuccess:"Request received! We'll notify you when flats are available. 🏠",
+    admLoginTitle:'Admin Panel', admLoginSub:'Sign in with your administrator credentials.',
+    admLUser:'Username', admLPass:'Password', admLoginBtn:'Enter panel',
+    admPanelTitle:'⚙️ Admin Panel', admLogout:'Sign out',
+    adms1l:'Pending', adms2l:'Approved', adms3l:'Rejected', adms4l:'Share pend.', adms5l:'Requests',
+    atab1:'Pending flats', atab2:'Approved flats', atab3:'Share pending', atab4:'Requests',
+    approve:'✓ Approve', reject:'✗ Reject',
+    badgePending:'Pending', badgeApproved:'Approved', badgeRejected:'Rejected',
+    emptyPend:'No pending listings. ✅', emptyAprov:'No approved flats yet.',
+    emptyComp:'No shared listings pending.', emptySols:'No requests yet.',
+    toastApproved:'✅ Approved and published.', toastRejected:'🗑 Listing rejected.',
+    toastError:'⚠️ Please fill required fields.', toastLoginError:'❌ Wrong credentials.',
+    toastFavAdd:'❤️ Added to favourites.', toastFavDel:'🤍 Removed from favourites.', toastCopied:'📋 Copied.',
+    detailClose:'Close', perMonth:'/mo', rooms:'bed.', m2:'m²',
+    spots:'spots free', available:'✓ Available',
+    featured:'⭐ Featured', comparteLbl:'🤝 Share',
+    gAll:'No preference', gMasc:'Men only', gFem:'Women only',
+    filZona:'Area', filPmin:'Min price', filPmax:'Max price', filHab:'Bedrooms',
+    filMueb:'Furnished', filTipo:'Type', filOrden:'Sort', filPref:'Preference',
+    filReset:'✕ Clear', filMuebSi:'Yes', filMuebNo:'No',
+    filTipoPiso:'Flat', filTipoComp:'Share',
+    filOrdRec:'Recent', filOrdAsc:'Price ↑', filOrdDesc:'Price ↓',
+    filResults:'results',
+    favsTitle:'❤️ My favourites', favsSub:'Flats you\'ve saved to compare later.',
+    favsEmpty:'No favourites saved yet. Tap ❤️ on any flat.',
+    contactTitle:'Contact details',
+    ofLGenero:'Flatmate preference', buLGenero:'Who do you want to share with?',
+  }
+};
+function t(k) { return T[lang][k] !== undefined ? T[lang][k] : k; }
+
+// ── SUPABASE CONFIG ───────────────────────────────────────────────────────────
+const SUPA_URL = 'https://mluhobayruuajjfixavx.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1sdWhvYmF5cnV1YWpqZml4YXZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNDg1ODcsImV4cCI6MjA5MzcyNDU4N30.3jPlj5TXLpbUWY6-HrEAX99L4taAI0m5T_HEyU7J9LE';
+const HEADERS  = { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY };
+
+async function sbSelect(table) {
+  try {
+    const r = await fetch(`${SUPA_URL}/rest/v1/${table}?select=*`, { headers: HEADERS });
+    const rows = await r.json();
+    if (!Array.isArray(rows)) return [];
+    return rows.map(row => {
+      const d = row.data || row;
+      // Normalizar price siempre como número
+      if (d.price !== undefined) d.price = parseInt(d.price) || 0;
+      return d;
+    });
+  } catch(e) { return []; }
+}
+
+async function sbUpsert(table, items) {
+  if (!items.length) {
+    // Delete all rows if empty
+    await fetch(`${SUPA_URL}/rest/v1/${table}?id=neq.null`, { method: 'DELETE', headers: HEADERS });
+    return;
+  }
+  // Upsert all items
+  const body = items.map(item => ({ id: item.id, data: item }));
+  await fetch(`${SUPA_URL}/rest/v1/${table}`, {
+    method: 'POST',
+    headers: { ...HEADERS, 'Prefer': 'resolution=merge-duplicates' },
+    body: JSON.stringify(body)
+  });
+  // Delete rows not in current list
+  const ids = items.map(i => i.id);
+  await fetch(`${SUPA_URL}/rest/v1/${table}?id=not.in.(${ids.map(id=>`"${id}"`).join(',')})`, {
+    method: 'DELETE', headers: HEADERS
+  });
+}
+
+async function sbUpsertOne(table, item) {
+  await fetch(`${SUPA_URL}/rest/v1/${table}`, {
+    method: 'POST',
+    headers: { ...HEADERS, 'Prefer': 'resolution=merge-duplicates' },
+    body: JSON.stringify({ id: item.id, data: item })
+  });
+}
+
+async function sbDelete(table, id) {
+  await fetch(`${SUPA_URL}/rest/v1/${table}?id=eq.${id}`, { method: 'DELETE', headers: HEADERS });
+}
+
+// ── LOCAL FAVORITES (siguen en localStorage, son personales) ──────────────────
+const favStore = {
+  get() { try { const v=localStorage.getItem('favorites_v1'); return v?JSON.parse(v):[]; } catch(e){return[];} },
+  set(v) { try { localStorage.setItem('favorites_v1', JSON.stringify(v)); } catch(e){} }
+};
+
+let pisos = [], comparte = [], solicitudes = [], favorites = [];
+
+async function loadData() {
+  // Mostrar spinner / estado cargando
+  document.getElementById('home-grid') && (document.getElementById('home-grid').innerHTML = '<div class="empty-state"><span>⏳</span><p>Cargando anuncios...</p></div>');
+  [pisos, comparte, solicitudes] = await Promise.all([
+    sbSelect('pisos_v3'),
+    sbSelect('comparte_v3'),
+    sbSelect('solicitudes_v3')
+  ]);
+  favorites = favStore.get();
+}
+
+async function saveData() {
+  await Promise.all([
+    sbUpsert('pisos_v3', pisos),
+    sbUpsert('comparte_v3', comparte),
+    sbUpsert('solicitudes_v3', solicitudes)
+  ]);
+}
+
+async function saveFavs() { favStore.set(favorites); }
+
+// ── ARAGÓN DATA ───────────────────────────────────────────────────────────────
+const CIUDAD_BARRIOS = {
+  'Zaragoza': ['Actur','Centro','Casco Antiguo','Delicias','Las Fuentes','Romareda','San José','Torrero','Universidad','Otro'],
+  'Huesca':   ['Centro','San Lorenzo','El Perpetuo Socorro','La Magdalena','Pirineos','Otro'],
+  'Teruel':   ['Centro','Ensanche','San León','Arrabal','Otro']
+};
+
+const CIUDAD_COORDS = {
+  'Zaragoza': [41.6488, -0.8891],
+  'Huesca':   [42.1401, -0.4089],
+  'Teruel':   [40.3456, -1.1065]
+};
+
+const BARRIO_COORDS = {
+  // Zaragoza
+  'Actur':[41.661,-0.904],'Centro':[41.649,-0.879],'Casco Antiguo':[41.6556,-0.879],
+  'Delicias':[41.642,-0.898],'Las Fuentes':[41.651,-0.864],'Romareda':[41.635,-0.895],
+  'San José':[41.638,-0.882],'Torrero':[41.629,-0.881],'Universidad':[41.6438,-0.8956],
+  // Huesca
+  'San Lorenzo':[42.1380,-0.4095],'El Perpetuo Socorro':[42.1415,-0.4071],
+  'La Magdalena':[42.1392,-0.4112],'Pirineos':[42.1425,-0.4050],
+  // Teruel
+  'Ensanche':[40.3470,-1.1080],'San León':[40.3440,-1.1050],'Arrabal':[40.3430,-1.1090],
+  'Otro':[0,0]
+};
+
+const CIUDAD_BADGE_COLOR = {
+  'Zaragoza': '#dc2626',
+  'Huesca':   '#ea7316',
+  'Teruel':   '#16a34a'
+};
+
+function getBarrioCoords(item) {
+  if (item.barrio && item.barrio !== 'Otro' && BARRIO_COORDS[item.barrio] && BARRIO_COORDS[item.barrio][0] !== 0) {
+    return BARRIO_COORDS[item.barrio];
+  }
+  return CIUDAD_COORDS[item.ciudad] || CIUDAD_COORDS['Zaragoza'];
+}
+
+// Cascading selects helpers
+function fillBarrioSelect(selectId, ciudad) {
+  const sel = document.getElementById(selectId);
+  if (!sel) return;
+  const barrios = CIUDAD_BARRIOS[ciudad] || [];
+  sel.innerHTML = `<option value="">— Selecciona barrio —</option>` +
+    barrios.map(b => `<option value="${b}">${b}</option>`).join('');
+}
+
+function fillZonaSelect(selectId, ciudad) {
+  const sel = document.getElementById(selectId);
+  if (!sel) return;
+  const barrios = ciudad ? (CIUDAD_BARRIOS[ciudad] || []) :
+    Object.values(CIUDAD_BARRIOS).flat().filter((v,i,a)=>a.indexOf(v)===i);
+  sel.innerHTML = `<option value="">Todas</option>` +
+    barrios.map(b => `<option value="${b}">${b}</option>`).join('');
+}
+
+function onOfCiudadChange() {
+  const ciudad = document.getElementById('of-ciudad').value;
+  fillBarrioSelect('of-barrio', ciudad);
+}
+function onFilCiudadChange() {
+  const ciudad = document.getElementById('fil-ciudad').value;
+  fillZonaSelect('fil-zona', ciudad);
+  applyFilters();
+}
+function onBuCiudadChange() {
+  const ciudad = document.getElementById('bu-ciudad').value;
+  fillZonaSelect('bu-zona', ciudad);
+}
+
+// Cache de coordenadas geocodificadas
+const geoCache = {};
+
+async function geocodeAddress(addr, ciudad) {
+  if (!addr || addr.trim().length < 5) return null;
+  const key = addr.trim().toLowerCase();
+  if (geoCache[key]) return geoCache[key];
+  try {
+    const cityStr = ciudad || 'Zaragoza';
+    const query = encodeURIComponent(addr + ', ' + cityStr + ', Aragón, España');
+    const url = `https://nominatim.openstreetmap.org/search?q=${query}&format=json&limit=1&countrycodes=es`;
+    const res = await fetch(url, { headers: { 'Accept-Language': 'es' } });
+    const data = await res.json();
+    if (data && data[0]) {
+      const coords = [parseFloat(data[0].lat), parseFloat(data[0].lon)];
+      geoCache[key] = coords;
+      return coords;
+    }
+  } catch(e) {}
+  return null;
+}
+
+function initMap(id) {
+  const m = L.map(id, {zoomControl:false}).setView([41.2, -0.9], 8);
+  L.control.zoom({position:'topright'}).addTo(m);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    {attribution:'© OpenStreetMap © CARTO', subdomains:'abcd', maxZoom:19}).addTo(m);
+  return m;
+}
+
+async function makeMarker(m, item, type) {
+  // Si tiene dirección exacta intenta geocodificar
+  let coords = null;
+  if (item.addr && item.addr.trim().length > 4) {
+    coords = await geocodeAddress(item.addr, item.ciudad);
+  }
+  // Fallback a barrio o ciudad
+  if (!coords) coords = getBarrioCoords(item);
+
+  const ciudadColor = CIUDAD_BADGE_COLOR[item.ciudad] || '#1d4ed8';
+  const c = type==='comparte' ? '#6d28d9' : item.featured ? '#b45309' : ciudadColor;
+  const icon = L.divIcon({
+    html:`<div style="background:${c};color:#fff;padding:5px 10px;border-radius:20px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:12px;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.2);border:2px solid #fff">${item.price}€</div>`,
+    className:'', iconAnchor:[28,16], popupAnchor:[0,-18]
+  });
+  const mk = L.marker(coords, {icon}).addTo(m);
+  const btnLabel = lang==='es' ? 'Ver detalles' : 'See details';
+  const addrLine = item.addr ? `<div style="font-size:.7rem;color:#7c756a;margin-top:1px">📌 ${item.addr}</div>` : '';
+  const ciudadLine = item.ciudad ? `<div style="font-size:.7rem;font-weight:700;color:${ciudadColor};margin-top:1px">🏙️ ${item.ciudad}</div>` : '';
+  mk.bindPopup(`<div style="font-family:'DM Sans',sans-serif;padding:8px;min-width:180px">
+    ${item.featured ? `<div style="color:#b45309;font-size:.62rem;font-weight:700;margin-bottom:4px">${t('featured')}</div>` : ''}
+    ${type==='comparte' ? `<div style="color:#6d28d9;font-size:.62rem;font-weight:700;margin-bottom:4px">${t('comparteLbl')}</div>` : ''}
+    <div style="font-weight:700;font-size:.9rem">${item.titulo}</div>
+    ${ciudadLine}
+    <div style="font-size:.74rem;color:#7c756a;margin-top:2px">📍 ${item.barrio||''}</div>
+    ${addrLine}
+    <div style="font-size:1rem;font-weight:800;color:${ciudadColor};margin-top:5px">${item.price}€<span style="font-size:.7rem;font-weight:400;color:#7c756a">${t('perMonth')}</span></div>
+    <button onclick="showDetail('${item.id}','${type}')" style="display:block;width:100%;margin-top:8px;background:#1d4ed8;color:#fff;border:none;padding:7px;border-radius:6px;font-size:.78rem;font-weight:600;cursor:pointer">${btnLabel}</button>
+  </div>`, {maxWidth:220});
+  return coords;
+}
+
+async function renderMaps() {
+  const all = [
+    ...pisos.filter(p=>p.status==='approved').map(p=>({...p,_type:'piso'})),
+    ...comparte.filter(c=>c.status==='approved').map(c=>({...c,_type:'comparte'}))
+  ];
+  for (const id of ['home','pisos']) {
+    const mapEl = document.getElementById('map-'+id);
+    if (!mapEl) continue;
+    mapEl.style.display = 'block';
+    let m = id==='home' ? mapHome : mapPisos;
+    if (!m) {
+      m = initMap('map-'+id);
+      if (id==='home') mapHome=m; else mapPisos=m;
+    } else {
+      m.eachLayer(l => { if(l instanceof L.Marker) m.removeLayer(l); });
+    }
+    setTimeout(() => m.invalidateSize(), 100);
+    const allCoords = [];
+    for (const item of all) {
+      const c = await makeMarker(m, item, item._type);
+      if (c && c[0] !== 0) allCoords.push(c);
+    }
+    if (allCoords.length > 1) {
+      m.fitBounds(allCoords, { padding: [40, 40], maxZoom: 14 });
+    } else if (allCoords.length === 1) {
+      m.setView(allCoords[0], 14);
+    } else {
+      m.setView([41.65, -0.89], 8); // Centro Aragón
+    }
+  }
+}
+
+// ── FAVORITES ─────────────────────────────────────────────────────────────────
+function isFav(id) { return favorites.includes(id); }
+async function toggleFav(id, evt) {
+  if (evt) { evt.stopPropagation(); evt.preventDefault(); }
+  if (isFav(id)) { favorites = favorites.filter(f=>f!==id); showToast(t('toastFavDel')); }
+  else { favorites.push(id); showToast(t('toastFavAdd')); }
+  await saveFavs();
+  // update all fav buttons for this id
+  document.querySelectorAll('[data-favid="'+id+'"]').forEach(btn => {
+    btn.textContent = isFav(id) ? '❤️' : '🤍';
+  });
+  updateFavCount();
+  if (document.getElementById('view-favoritos').classList.contains('active')) renderFavs();
+}
+function updateFavCount() {
+  const el = document.getElementById('fav-count');
+  if (el) el.textContent = favorites.length > 0 ? '('+favorites.length+')' : '';
+}
+function renderFavs() {
+  const g = document.getElementById('favs-grid');
+  if (!g) return;
+  document.getElementById('favs-title').textContent = t('favsTitle');
+  document.getElementById('favs-sub').textContent = t('favsSub');
+  const items = [
+    ...pisos.filter(p=>p.status==='approved' && isFav(p.id)).map(p=>({...p,_type:'piso'})),
+    ...comparte.filter(c=>c.status==='approved' && isFav(c.id)).map(c=>({...c,_type:'comparte'}))
+  ];
+  g.innerHTML = '';
+  if (!items.length) {
+    g.innerHTML = `<div class="favs-empty"><span class="fe-icon">🤍</span><p>${t('favsEmpty')}</p></div>`;
+    return;
+  }
+  items.forEach(p => g.appendChild(buildCard(p, p._type==='comparte')));
+}
+
+// ── CARD BUILDER ──────────────────────────────────────────────────────────────
+function buildCard(p, isC) {
+  const d = document.createElement('div');
+  d.className = 'piso-card' + (p.featured ? ' featured' : '') + (isC ? ' comparte-card-type' : '');
+  const gTag = p.genero && p.genero!=='all'
+    ? `<span class="ctag ${p.genero}">${p.genero==='fem'?'👩 '+t('gFem'):'👨 '+t('gMasc')}</span>` : '';
+
+  // Image area: photos or emoji placeholder
+  let imgHtml;
+  if (p.photos && p.photos.length > 0) {
+    imgHtml = `<div class="card-img-slider" id="cslide-${p.id}">
+      ${p.photos.map((src,i)=>`<img class="card-img-slide${i===0?' active':''}" src="${src}" alt="foto ${i+1}" loading="lazy"/>`).join('')}
+      ${p.featured && !isC ? `<div class="feat-badge">${t('featured')}</div>` : ''}
+      ${isC ? `<div class="comparte-badge">${t('comparteLbl')}</div>` : ''}
+      <button class="fav-btn" data-favid="${p.id}" onclick="toggleFav('${p.id}',event)">${isFav(p.id)?'❤️':'🤍'}</button>
+      ${p.photos.length > 1 ? `<div class="card-img-dots">${p.photos.map((_,i)=>`<button class="card-img-dot${i===0?' on':''}" onclick="slideCard('${p.id}',${i},event)"></button>`).join('')}</div>` : ''}
+    </div>`;
+  } else {
+    imgHtml = `<div class="card-img-wrap">
+      <span style="font-size:2.8rem">${isC?'🤝':'🏠'}</span>
+      ${p.featured && !isC ? `<div class="feat-badge">${t('featured')}</div>` : ''}
+      ${isC ? `<div class="comparte-badge">${t('comparteLbl')}</div>` : ''}
+      <button class="fav-btn" data-favid="${p.id}" onclick="toggleFav('${p.id}',event)">${isFav(p.id)?'❤️':'🤍'}</button>
+    </div>`;
+  }
+
+  d.innerHTML = imgHtml + `
+    <div class="card-body">
+      <div class="card-price" style="color:${CIUDAD_BADGE_COLOR[p.ciudad]||'#dc2626'}">${p.price}€<span> ${t('perMonth')}</span></div>
+      <div class="card-title">${p.titulo}</div>
+      <div class="card-meta">
+        ${p.ciudad ? `<span style="display:inline-block;background:${CIUDAD_BADGE_COLOR[p.ciudad]||'#1d4ed8'};color:#fff;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:20px;margin-right:4px">🏙️ ${p.ciudad}</span>` : ''}
+        📍 ${p.barrio||''}${p.m2?' · '+p.m2+t('m2'):''}${p.hab?' · '+p.hab+' '+t('rooms'):''}
+      </div>
+      <div class="card-tags">
+        <span class="ctag avail">${t('available')}</span>
+        ${isC ? `<span class="ctag purp">🤝 ${p.plazas} ${t('spots')}</span>` : `<span class="ctag">${p.amueblado||''}</span>`}
+        ${gTag}
+      </div>
+    </div>`;
+  d.addEventListener('click', function(e) {
+    if (e.target.classList.contains('fav-btn') || e.target.closest('.fav-btn')) return;
+    if (e.target.classList.contains('card-img-dot') || e.target.closest('.card-img-dot')) return;
+    showDetail(p.id, isC ? 'comparte' : 'piso');
+  });
+  return d;
+}
+
+function slideCard(id, idx, evt) {
+  if (evt) { evt.stopPropagation(); evt.preventDefault(); }
+  const wrap = document.getElementById('cslide-'+id);
+  if (!wrap) return;
+  wrap.querySelectorAll('.card-img-slide').forEach((el,i) => el.classList.toggle('active', i===idx));
+  wrap.querySelectorAll('.card-img-dot').forEach((el,i) => el.classList.toggle('on', i===idx));
+}
+
+// ── LISTINGS ──────────────────────────────────────────────────────────────────
+function renderListings() {
+  const approved  = pisos.filter(p=>p.status==='approved');
+  const approvedC = comparte.filter(c=>c.status==='approved');
+
+  // HOME grid
+  const hg = document.getElementById('home-grid');
+  if (hg) {
+    hg.innerHTML = '';
+    if (!approved.length && !approvedC.length) {
+      hg.innerHTML = `<div class="empty-state"><span>🏠</span><p>${t('noPisosTxt')}</p></div>`;
+    } else {
+      [...approved, ...approvedC].forEach(p => hg.appendChild(buildCard(p, !!p.plazas)));
+    }
+  }
+
+  // PISOS grid (with filters)
+  applyFilters();
+
+  // COMPARTE grid
+  const cg = document.getElementById('comparte-grid');
+  if (cg) {
+    cg.innerHTML = '';
+    if (!approvedC.length) {
+      cg.innerHTML = `<div class="empty-state"><span>🤝</span><p>${t('noCompTxt')}</p></div>`;
+    } else {
+      approvedC.forEach(c => {
+        const d = document.createElement('div');
+        d.className = 'comp-card';
+        const gTag = c.genero && c.genero!=='all'
+          ? `<span class="cc-tag">${c.genero==='fem'?'👩 '+t('gFem'):'👨 '+t('gMasc')}</span>` : '';
+        d.innerHTML = `
+          <button class="fav-btn" style="position:absolute;top:10px;right:10px" data-favid="${c.id}" onclick="toggleFav('${c.id}',event)">${isFav(c.id)?'❤️':'🤍'}</button>
+          <div class="cc-header">
+            <div class="cc-avatar">🧑‍🎓</div>
+            <div><div class="cc-name">${c.nombre}</div><div class="cc-uni">📍 ${c.barrio}</div></div>
+          </div>
+          <div class="cc-desc">${c.desc||c.titulo}</div>
+          <div class="cc-tags">
+            ${c.perfil?`<span class="cc-tag">👤 ${c.perfil}</span>`:''}
+            ${c.normas?`<span class="cc-tag">📋 ${c.normas.substring(0,28)}…</span>`:''}
+            <span class="cc-tag">🛏 ${c.hab} ${t('rooms')}</span>
+            ${gTag}
+          </div>
+          <div class="cc-footer">
+            <div class="cc-price">${c.price}€<span> ${t('perMonth')}</span></div>
+            <div class="cc-spots">🟢 ${c.plazas} ${t('spots')}</div>
+          </div>`;
+        d.addEventListener('click', function(e) {
+          if (e.target.classList.contains('fav-btn') || e.target.closest('.fav-btn')) return;
+          showDetail(c.id, 'comparte');
+        });
+        cg.appendChild(d);
+      });
+    }
+  }
+
+  // Stats
+  document.getElementById('stat-pisos').textContent = approved.length;
+  document.getElementById('stat-comp').textContent  = approvedC.length;
+  document.getElementById('stat-sol').textContent   = solicitudes.length;
+  updateFavCount();
+}
+
+// ── FILTERS ───────────────────────────────────────────────────────────────────
+let currentPref = 'all';
+function setPref(p, btn) {
+  currentPref = p;
+  document.querySelectorAll('.pref-btn').forEach(b => b.className = 'pref-btn');
+  if (p==='all')  btn.className = 'pref-btn on-all';
+  if (p==='masc') btn.className = 'pref-btn on-masc';
+  if (p==='fem')  btn.className = 'pref-btn on-fem';
+  applyFilters();
+}
+function resetFilters() {
+  ['fil-ciudad','fil-zona','fil-hab','fil-mueb','fil-tipo'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
+  document.getElementById('fil-pmin').value='';
+  document.getElementById('fil-pmax').value='';
+  document.getElementById('fil-orden').value='recent';
+  fillZonaSelect('fil-zona', '');
+  currentPref='all';
+  document.getElementById('pref-all').className='pref-btn on-all';
+  document.getElementById('pref-masc').className='pref-btn';
+  document.getElementById('pref-fem').className='pref-btn';
+  applyFilters();
+}
+function applyFilters() {
+  const ciudad = document.getElementById('fil-ciudad') ? document.getElementById('fil-ciudad').value : '';
+  const zona  = document.getElementById('fil-zona').value;
+  const pmin  = parseInt(document.getElementById('fil-pmin').value) || 0;
+  const pmax  = parseInt(document.getElementById('fil-pmax').value) || 999999;
+  const hab   = document.getElementById('fil-hab').value;
+  const mueb  = document.getElementById('fil-mueb').value;
+  const tipo  = document.getElementById('fil-tipo').value;
+  const orden = document.getElementById('fil-orden').value;
+
+  let ap = pisos.filter(p=>p.status==='approved');
+  let ac = comparte.filter(c=>c.status==='approved');
+
+  const matchGender = (item) => {
+    if (currentPref==='all') return true;
+    if (!item.genero || item.genero==='all') return true;
+    return item.genero === currentPref;
+  };
+  const matchMueb = (item) => {
+    if (!mueb) return true;
+    const val = (item.amueblado||'').toLowerCase();
+    if (mueb==='si') return val==='sí' || val==='si' || val==='yes';
+    if (mueb==='no') return val==='no';
+    return true;
+  };
+
+  if (tipo !== 'comparte') {
+    ap = ap.filter(p =>
+      (!ciudad || p.ciudad===ciudad) &&
+      (!zona || p.barrio===zona) &&
+      p.price>=pmin && p.price<=pmax &&
+      (!hab || String(p.hab)===hab) &&
+      matchMueb(p) && matchGender(p)
+    );
+  } else { ap = []; }
+
+  if (tipo !== 'piso') {
+    ac = ac.filter(c =>
+      (!ciudad || c.ciudad===ciudad) &&
+      (!zona || c.barrio===zona) &&
+      c.price>=pmin && c.price<=pmax &&
+      (!hab || String(c.hab)===hab) &&
+      matchGender(c)
+    );
+  } else { ac = []; }
+
+  let combined = [
+    ...ap.map(p=>({...p,_type:'piso'})),
+    ...ac.map(c=>({...c,_type:'comparte'}))
+  ];
+
+  if (orden==='asc')  combined.sort((a,b)=>a.price-b.price);
+  if (orden==='desc') combined.sort((a,b)=>b.price-a.price);
+
+  const g = document.getElementById('pisos-grid');
+  if (!g) return;
+  g.innerHTML = '';
+  document.getElementById('fil-count').textContent = combined.length + ' ' + t('filResults');
+  if (!combined.length) {
+    g.innerHTML = `<div class="empty-state"><span>🔍</span><p>${t('noPisosTxt')}</p></div>`;
+    return;
+  }
+  combined.forEach(p => g.appendChild(buildCard(p, p._type==='comparte')));
+}
+
+// ── DETAIL MODAL ──────────────────────────────────────────────────────────────
+function showDetail(id, type) {
+  const list = type==='comparte' ? comparte : pisos;
+  const p = list.find(x=>x.id===id);
+  if (!p) return;
+  const box = document.getElementById('detail-box');
+  const ciudadColor = CIUDAD_BADGE_COLOR[p.ciudad] || '#1d4ed8';
+
+  // Gallery
+  let galleryHtml = '';
+  if (p.photos && p.photos.length > 0) {
+    if (p.photos.length === 1) {
+      galleryHtml = `<div class="detail-gallery"><img src="${p.photos[0]}" alt="foto" onclick="openLightbox(${JSON.stringify(p.photos)},0)"/></div>`;
+    } else if (p.photos.length === 2) {
+      galleryHtml = `<div class="detail-gallery"><div class="detail-gallery-multi">
+        <div class="detail-gallery-main"><img src="${p.photos[0]}" onclick="openLightbox(${JSON.stringify(p.photos)},0)"/></div>
+        <div class="detail-gallery-side"><img src="${p.photos[1]}" onclick="openLightbox(${JSON.stringify(p.photos)},1)"/></div>
+      </div></div>`;
+    } else {
+      const extras = p.photos.length > 3 ? `<div class="detail-gallery-more" onclick="openLightbox(${JSON.stringify(p.photos)},2)">+${p.photos.length-3} fotos</div>` : '';
+      galleryHtml = `<div class="detail-gallery" style="position:relative"><div class="detail-gallery-multi">
+        <div class="detail-gallery-main"><img src="${p.photos[0]}" onclick="openLightbox(${JSON.stringify(p.photos)},0)"/></div>
+        <div class="detail-gallery-side">
+          <img src="${p.photos[1]}" onclick="openLightbox(${JSON.stringify(p.photos)},1)"/>
+          <img src="${p.photos[2]}" onclick="openLightbox(${JSON.stringify(p.photos)},2)"/>
+        </div>
+      </div>${extras}</div>`;
+    }
+  } else {
+    galleryHtml = `<div class="detail-no-photo">${type==='comparte'?'🤝':'🏠'}</div>`;
+  }
+
+  // Chips
+  const chips = [
+    p.ciudad ? `<span class="detail-chip" style="background:${ciudadColor};color:#fff;border-color:${ciudadColor}">🏙️ ${p.ciudad}</span>` : '',
+    p.barrio ? `<span class="detail-chip">📍 ${p.barrio}</span>` : '',
+    p.addr   ? `<span class="detail-chip">🏠 ${p.addr}</span>` : '',
+    p.hab    ? `<span class="detail-chip">🛏 ${p.hab} habitación${p.hab>1?'es':''}</span>` : '',
+    p.m2     ? `<span class="detail-chip">📐 ${p.m2} m²</span>` : '',
+    p.amueblado ? `<span class="detail-chip">🪑 ${p.amueblado}</span>` : '',
+    p.plazas ? `<span class="detail-chip" style="background:var(--purple-bg);border-color:#c4b5fd;color:var(--purple)">🤝 ${p.plazas} plazas</span>` : '',
+    p.genero && p.genero!=='all' ? `<span class="detail-chip" style="background:${p.genero==='fem'?'#fff1f2':'#eff6ff'};border-color:${p.genero==='fem'?'#fda4af':'#93c5fd'};color:${p.genero==='fem'?'#be185d':'#1d4ed8'}">${p.genero==='fem'?'👩 Solo chicas':'👨 Solo chicos'}</span>` : '',
+    p.featured ? `<span class="detail-chip" style="background:#fef3c7;border-color:#fcd34d;color:#92400e">⭐ Destacado</span>` : '',
+    type==='comparte' ? `<span class="detail-chip" style="background:var(--purple-bg);border-color:#c4b5fd;color:var(--purple)">🤝 Piso compartido</span>` : '',
+  ].filter(Boolean).join('');
+
+  box.innerHTML = `
+    <div style="position:relative">
+      <button class="detail-fav-btn" data-favid="${p.id}" onclick="toggleFav('${p.id}',event)">${isFav(p.id)?'❤️':'🤍'}</button>
+      ${galleryHtml}
+    </div>
+    <div class="detail-body">
+      <h2 class="detail-title">${p.titulo}</h2>
+      <div class="detail-price-row">
+        <div class="detail-price" style="color:${ciudadColor}">${p.price}€<span>/mes</span></div>
+        ${p.featured ? '<span style="background:#fef3c7;border:1px solid #fcd34d;color:#92400e;font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:20px">⭐ Destacado</span>' : ''}
+      </div>
+      <div class="detail-chips">${chips}</div>
+      ${p.desc ? `<div class="detail-desc">${p.desc}</div>` : ''}
+      ${p.normas ? `<div class="detail-desc" style="border-left:3px solid #c4b5fd"><strong>📋 Normas:</strong> ${p.normas}</div>` : ''}
+      ${p.perfil ? `<div class="detail-desc" style="border-left:3px solid #93c5fd"><strong>👤 Buscamos:</strong> ${p.perfil}</div>` : ''}
+
+      <div class="detail-contact">
+        <div class="detail-contact-title">📞 Contacto</div>
+        <div class="detail-contact-row">
+          <div class="detail-contact-icon">👤</div>
+          <strong>${p.nombre||'—'}</strong>
+        </div>
+        ${p.tel ? `<div class="detail-contact-row">
+          <div class="detail-contact-icon">📱</div>
+          <a href="tel:${p.tel}" style="color:var(--ink);font-weight:500">${p.tel}</a>
+          <button class="detail-copy-btn" onclick="copyTxt('${p.tel}')">Copiar</button>
+        </div>` : ''}
+        <div class="detail-contact-row">
+          <div class="detail-contact-icon">✉️</div>
+          <span style="color:var(--muted);font-style:italic">${maskEmail(p.email)}</span>
+        </div>
+      </div>
+
+      <div class="detail-manage-note" style="text-align:right;margin-top:8px">
+        <button onclick="openOwnerModal('${p.id}','${type}')" style="background:none;border:none;color:rgba(124,117,106,.4);cursor:pointer;font-size:.68rem;padding:0;font-family:'DM Sans',sans-serif">🔑 Soy el anunciante</button>
+      </div>
+      <button class="detail-close-btn" onclick="closeDetail()">Cerrar</button>
+    </div>`;
+
+  document.getElementById('detail-overlay').classList.add('open');
+}
+function closeDetail() { document.getElementById('detail-overlay').classList.remove('open'); }
+document.getElementById('detail-overlay').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeDetail();
+});
+function maskEmail(email) {
+  if (!email) return '';
+  const [user, domain] = email.split('@');
+  if (!domain) return email;
+  const visible = user.length <= 2 ? user[0] : user.slice(0, 2);
+  return visible + '***@' + domain;
+}
+function copyTxt(txt) {
+  navigator.clipboard.writeText(txt).then(()=>showToast(t('toastCopied'))).catch(()=>{
+    const ta = document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy'); ta.remove(); showToast(t('toastCopied'));
+  });
+}
+
+// ── LIGHTBOX ──────────────────────────────────────────────────────────────────
+let lbImages = [], lbIndex = 0;
+function openLightbox(photos, idx) {
+  lbImages = photos; lbIndex = idx;
+  document.getElementById('lb-img').src = photos[idx];
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+function lbNav(dir, evt) {
+  if (evt) evt.stopPropagation();
+  lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
+  document.getElementById('lb-img').src = lbImages[lbIndex];
+}
+
+// ── OWNER MANAGEMENT ──────────────────────────────────────────────────────────
+let ownerPendingId = null, ownerPendingType = null, ownerPendingAction = null;
+
+function openOwnerModal(id, type, action='manage') {
+  ownerPendingId = id; ownerPendingType = type; ownerPendingAction = action;
+  const list = type==='comparte' ? comparte : pisos;
+  const p = list.find(x=>x.id===id);
+  document.getElementById('owner-modal-title').textContent = '🔑 Verificar identidad';
+  document.getElementById('owner-modal-info').textContent =
+    'Para gestionar este anuncio introduce el email con el que lo publicaste. Solo el anunciante puede modificarlo o eliminarlo.';
+  document.getElementById('owner-email-input').value = '';
+  document.getElementById('owner-modal').classList.add('open');
+  setTimeout(() => document.getElementById('owner-email-input').focus(), 100);
+}
+
+function closeOwnerModal() {
+  document.getElementById('owner-modal').classList.remove('open');
+  ownerPendingId = null; ownerPendingType = null; ownerPendingAction = null;
+}
+document.getElementById('owner-modal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeOwnerModal();
+});
+
+async function confirmOwnerAction() {
+  const inputEmail = document.getElementById('owner-email-input').value.trim().toLowerCase();
+  if (!inputEmail) { showToast('⚠️ Introduce tu email.'); return; }
+  const list = ownerPendingType==='comparte' ? comparte : pisos;
+  const p = list.find(x=>x.id===ownerPendingId);
+  if (!p) { closeOwnerModal(); return; }
+  const inputHash = await hashEmail(inputEmail);
+  // Compatibilidad: algunos anuncios antiguos pueden tener email en texto plano
+  const stored = p.emailHash || (p.email ? await hashEmail(p.email) : null);
+  if (!stored || stored !== inputHash) {
+    showToast('❌ Email incorrecto. Inténtalo de nuevo.');
+    document.getElementById('owner-email-input').value = '';
+    document.getElementById('owner-email-input').focus();
+    return;
+  }
+  closeOwnerModal();
+  showOwnerPanel(p, ownerPendingType);
+}
+
+function showOwnerPanel(p, type) {
+  closeDetail();
+  // Build an edit/delete modal
+  const box = document.getElementById('detail-box');
+  const isC = type === 'comparte';
+
+  box.innerHTML = `
+    <h3>⚙️ Gestionar mi anuncio</h3>
+    <div style="font-size:.82rem;color:var(--muted);margin-bottom:18px">Anuncio: <strong>${p.titulo}</strong></div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <button class="submit-btn" style="background:var(--primary)" onclick="openEditForm('${p.id}','${type}')">✏️ Editar anuncio</button>
+      <button class="submit-btn" style="background:var(--red);margin-top:0" onclick="confirmDeleteOwner('${p.id}','${type}')">🗑️ Eliminar mi anuncio</button>
+      <button onclick="closeDetail()" style="width:100%;padding:11px;border:1.5px solid var(--border);border-radius:9px;background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.88rem">Cancelar</button>
+    </div>`;
+  document.getElementById('detail-overlay').classList.add('open');
+}
+
+async function confirmDeleteOwner(id, type) {
+  if (!confirm('¿Seguro que quieres eliminar este anuncio? Esta acción no se puede deshacer.')) return;
+  const list = type==='comparte' ? comparte : pisos;
+  const idx = list.findIndex(x=>x.id===id);
+  if (idx > -1) list.splice(idx, 1);
+  await sbDelete(type==='comparte' ? 'comparte_v3' : 'pisos_v3', id);
+  closeDetail();
+  renderListings();
+  renderMaps();
+  showToast('🗑️ Anuncio eliminado correctamente.');
+}
+
+function openEditForm(id, type) {
+  closeDetail();
+  const list = type==='comparte' ? comparte : pisos;
+  const p = list.find(x=>x.id===id);
+  if (!p) return;
+  // Pre-fill the ofrecer form with current data and set edit mode
+  showView('ofrecer');
+  editingId = id; editingType = type;
+  document.getElementById('of-titulo').value = p.titulo || '';
+  const ciudadSel = document.getElementById('of-ciudad');
+  ciudadSel.value = p.ciudad || 'Zaragoza';
+  fillBarrioSelect('of-barrio', ciudadSel.value);
+  document.getElementById('of-barrio').value = p.barrio || '';
+  document.getElementById('of-price').value = p.price || '';
+  document.getElementById('of-addr').value = p.addr || '';
+  document.getElementById('of-hab').value = p.hab || '1';
+  document.getElementById('of-m2').value = p.m2 || '';
+  document.getElementById('of-desc').value = p.desc || '';
+  document.getElementById('of-nombre').value = p.nombre || '';
+  document.getElementById('of-tel').value = p.tel || '';
+  document.getElementById('of-email').value = ''; // Por seguridad no se muestra el email
+  document.getElementById('of-email').placeholder = 'Introduce de nuevo tu email para verificar';
+  selectTipo(type === 'comparte' ? 'comparte' : 'piso');
+  selectGender(p.genero || 'all');
+  if (type === 'comparte') {
+    document.getElementById('of-plazas').value = p.plazas || '1';
+    document.getElementById('of-perfil').value = p.perfil || '';
+    document.getElementById('of-normas').value = p.normas || '';
+  }
+  // Update fotos preview
+  uploadedPhotos = p.photos ? [...p.photos] : [];
+  renderPhotoPreviews();
+  // Change submit button text
+  document.getElementById('of-submit').textContent = '💾 Guardar cambios';
+  document.getElementById('of-form').style.display = 'block';
+  document.getElementById('of-success').style.display = 'none';
+  showToast('✏️ Editando tu anuncio. Guarda los cambios al terminar.');
+}
+let editingId = null, editingType = null;
+
+// ── TIPO SELECTOR ─────────────────────────────────────────────────────────────
+let currentTipo = 'piso';
+function selectTipo(tipo) {
+  currentTipo = tipo;
+  document.getElementById('tipo-piso').classList.toggle('selected', tipo==='piso');
+  document.getElementById('tipo-piso').classList.remove('purple-type');
+  document.getElementById('tipo-comparte').classList.toggle('selected', tipo==='comparte');
+  document.getElementById('tipo-comparte').classList.toggle('purple-type', tipo==='comparte');
+  document.getElementById('comparte-extras').style.display = tipo==='comparte' ? 'block' : 'none';
+  document.getElementById('of-submit').className = 'submit-btn' + (tipo==='comparte' ? ' purple-btn' : '');
+}
+
+// ── GENDER SELECTORS ──────────────────────────────────────────────────────────
+let currentGender = 'all';
+function selectGender(g) {
+  currentGender = g;
+  ['all','masc','fem'].forEach(v => {
+    const el = document.getElementById('gopt-'+v);
+    el.className = 'gopt';
+    if (v===g) el.classList.add('sel-'+g);
+  });
+}
+let currentBuGender = 'all';
+function selectBuGender(g) {
+  currentBuGender = g;
+  ['all','masc','fem'].forEach(v => {
+    const el = document.getElementById('bu-gopt-'+v);
+    el.className = 'gopt';
+    if (v===g) el.classList.add('sel-'+g);
+  });
+}
+
+// ── OPEN OFRECER COMPARTE ─────────────────────────────────────────────────────
+function openOfrecerComparte() {
+  showView('ofrecer');
+  selectTipo('comparte');
+}
+
+// ── PHOTO UPLOAD ──────────────────────────────────────────────────────────────
+let uploadedPhotos = []; // base64 strings
+
+function photoDragOver(e) { e.preventDefault(); document.getElementById('photo-drop-zone').classList.add('drag-over'); }
+function photoDragLeave(e) { document.getElementById('photo-drop-zone').classList.remove('drag-over'); }
+function photoDrop(e) {
+  e.preventDefault();
+  document.getElementById('photo-drop-zone').classList.remove('drag-over');
+  handlePhotoFiles(Array.from(e.dataTransfer.files));
+}
+function handlePhotoInput(e) { handlePhotoFiles(Array.from(e.target.files)); e.target.value=''; }
+
+function handlePhotoFiles(files) {
+  const remaining = 6 - uploadedPhotos.length;
+  if (remaining <= 0) { showToast('⚠️ Máximo 6 fotos.'); return; }
+  files.slice(0, remaining).forEach(file => {
+    if (!file.type.startsWith('image/')) return;
+    if (file.size > 2 * 1024 * 1024) { showToast('⚠️ Foto demasiado grande (máx 2MB)'); return; }
+    const reader = new FileReader();
+    reader.onload = e => {
+      uploadedPhotos.push(e.target.result);
+      renderPhotoPreviews();
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function renderPhotoPreviews() {
+  const container = document.getElementById('photo-previews');
+  if (!container) return;
+  container.innerHTML = '';
+  uploadedPhotos.forEach((src, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'photo-thumb';
+    wrap.innerHTML = `<img src="${src}" alt="foto ${i+1}"/><button class="photo-thumb-del" onclick="removePhoto(${i})">✕</button>`;
+    container.appendChild(wrap);
+  });
+}
+
+function removePhoto(idx) {
+  uploadedPhotos.splice(idx, 1);
+  renderPhotoPreviews();
+}
+
+// ── FORMS ─────────────────────────────────────────────────────────────────────
+async function hashEmail(email) {
+  const clean = email.trim().toLowerCase();
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(clean));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+async function submitOfrecer() {
+  const titulo = document.getElementById('of-titulo').value.trim();
+  const barrio = document.getElementById('of-barrio').value;
+  const price  = document.getElementById('of-price').value;
+  const nombre = document.getElementById('of-nombre').value.trim();
+  const email  = document.getElementById('of-email').value.trim();
+  if (!titulo || !price || !nombre || !email) { showToast(t('toastError')); return; }
+  const emailHash = await hashEmail(email);
+
+  // Si estamos editando, verificar que el email sea el del anunciante original
+  if (editingId) {
+    const list = editingType==='comparte' ? comparte : pisos;
+    const existing = list.find(x=>x.id===editingId);
+    if (existing) {
+      const storedHash = existing.emailHash || (existing.email ? await hashEmail(existing.email) : null);
+      if (storedHash && storedHash !== emailHash) {
+        showToast('❌ El email no coincide con el del anuncio original.');
+        return;
+      }
+    }
+  }
+
+  const base = {
+    status: editingId ? ((() => {
+      const list = editingType==='comparte' ? comparte : pisos;
+      const existing = list.find(x=>x.id===editingId);
+      return existing ? existing.status : 'pending';
+    })()) : 'pending',
+    featured: editingId ? ((() => {
+      const list = editingType==='comparte' ? comparte : pisos;
+      const existing = list.find(x=>x.id===editingId);
+      return existing ? existing.featured : false;
+    })()) : false,
+    id: editingId || ((currentTipo==='piso'?'p':'c') + '_' + Date.now()),
+    titulo,
+    price: parseInt(price) || 0,
+    ciudad: document.getElementById('of-ciudad').value || 'Zaragoza',
+    barrio: document.getElementById('of-barrio').value,
+    addr: document.getElementById('of-addr').value.trim(),
+    hab: document.getElementById('of-hab').value,
+    m2: parseInt(document.getElementById('of-m2').value) || 0,
+    amueblado: document.getElementById('of-amueblado').value,
+    desc: document.getElementById('of-desc').value.trim(),
+    nombre, tel: document.getElementById('of-tel').value.trim(), emailHash,
+    genero: currentGender,
+    photos: [...uploadedPhotos],
+    createdAt: editingId ? ((() => {
+      const list = editingType==='comparte' ? comparte : pisos;
+      const existing = list.find(x=>x.id===editingId);
+      return existing ? existing.createdAt : new Date().toLocaleDateString();
+    })()) : new Date().toLocaleDateString()
+  };
+
+  const tipo = editingId ? editingType : currentTipo;
+
+  if (tipo === 'comparte') {
+    base.plazas = document.getElementById('of-plazas').value;
+    base.perfil = document.getElementById('of-perfil').value;
+    base.normas = document.getElementById('of-normas').value.trim();
+    if (editingId) {
+      const idx = comparte.findIndex(x=>x.id===editingId);
+      if (idx>-1) comparte[idx] = base; else comparte.push(base);
+    } else { comparte.push(base); }
+  } else {
+    if (editingId) {
+      const idx = pisos.findIndex(x=>x.id===editingId);
+      if (idx>-1) pisos[idx] = base; else pisos.push(base);
+    } else { pisos.push(base); }
+  }
+
+  await sbUpsertOne(tipo === 'comparte' ? 'comparte_v3' : 'pisos_v3', base);
+  const wasEditing = !!editingId;
+  // Reset edit state
+  editingId = null; editingType = null;
+  uploadedPhotos = [];
+  document.getElementById('of-submit').textContent = t('ofSubmit');
+  document.getElementById('of-form').style.display = 'none';
+  document.getElementById('of-success').style.display = 'block';
+  document.getElementById('of-success-msg').textContent = wasEditing ? '✅ Cambios guardados.' : t('ofSuccess');
+  renderListings();
+  renderMaps();
+}
+
+async function submitBuscar() {
+  const nombre = document.getElementById('bu-nombre').value.trim();
+  const email  = document.getElementById('bu-email').value.trim();
+  if (!nombre || !email) { showToast(t('toastError')); return; }
+  const sol = {
+    id: 's_'+Date.now(), nombre, email,
+    carrera: document.getElementById('bu-carrera').value.trim(),
+    pmax: parseInt(document.getElementById('bu-pmax').value) || 0,
+    hab: document.getElementById('bu-hab').value,
+    zona: document.getElementById('bu-zona').value,
+    tipo: document.getElementById('bu-tipo').value,
+    genero: currentBuGender,
+    msg: document.getElementById('bu-msg').value.trim(),
+    createdAt: new Date().toLocaleDateString()
+  };
+  solicitudes.push(sol);
+  await sbUpsertOne('solicitudes_v3', sol);
+  document.getElementById('bu-form').style.display = 'none';
+  document.getElementById('bu-success').style.display = 'block';
+  document.getElementById('bu-success-msg').textContent = t('buSuccess');
+}
+
+// ── ADMIN ─────────────────────────────────────────────────────────────────────
+let adminLogged = false;
+
+// Acceso secreto: 5 clics en esquina inferior derecha (zona invisible)
+let secretClicks = 0, secretTimer = null;
+document.getElementById('admin-secret-zone').addEventListener('click', () => {
+  secretClicks++;
+  clearTimeout(secretTimer);
+  secretTimer = setTimeout(() => { secretClicks = 0; }, 1500);
+  if (secretClicks >= 5) { secretClicks = 0; showView('admin'); }
+});
+// También accesible via URL ?admin=1
+if (location.search.includes('admin')) {
+  window.addEventListener('load', () => showView('admin'));
+}
+
+function doLogin() {
+  const u = document.getElementById('adm-user').value.trim();
+  const p = document.getElementById('adm-pass').value;
+  if (u === 'pabloossanz' && p === '7978') {
+    adminLogged = true;
+    document.getElementById('adm-login-wrap').style.display = 'none';
+    document.getElementById('adm-panel-wrap').style.display = 'block';
+    renderAdminPanel();
+  } else {
+    showToast(t('toastLoginError'));
+  }
+}
+function doLogout() {
+  adminLogged = false;
+  document.getElementById('adm-login-wrap').style.display = 'block';
+  document.getElementById('adm-panel-wrap').style.display = 'none';
+  document.getElementById('adm-user').value = '';
+  document.getElementById('adm-pass').value = '';
+  showView('home');
+}
+
+function renderAdminPanel() {
+  const pend  = pisos.filter(p=>p.status==='pending');
+  const aprov = pisos.filter(p=>p.status==='approved');
+  const reje  = pisos.filter(p=>p.status==='rejected');
+  const cpend = comparte.filter(c=>c.status==='pending');
+
+  document.getElementById('adm-s1').textContent = pend.length;
+  document.getElementById('adm-s2').textContent = aprov.length;
+  document.getElementById('adm-s3').textContent = reje.length;
+  document.getElementById('adm-s4').textContent = cpend.length;
+  document.getElementById('adm-s5').textContent = solicitudes.length;
+
+  function renderSection(el, list, emptyMsg, type) {
+    el.innerHTML = '';
+    if (!list.length) {
+      el.innerHTML = `<div class="empty-state"><span>✅</span><p>${emptyMsg}</p></div>`;
+      return;
+    }
+    list.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'pending-card';
+      const statusLabel = t('badge' + p.status.charAt(0).toUpperCase() + p.status.slice(1));
+      const gLabel = p.genero && p.genero!=='all' ? (p.genero==='fem' ? ' · 👩' : ' · 👨') : '';
+      const ciudadColor = CIUDAD_BADGE_COLOR[p.ciudad] || '#1d4ed8';
+      card.innerHTML = `
+        <div class="pending-info">
+          <div class="pending-name">
+            ${p.titulo} <span class="badge ${p.status}">${statusLabel}</span>
+            ${p.featured ? '<span style="background:#fcd34d;color:#92400e;font-size:.62rem;font-weight:700;padding:2px 7px;border-radius:10px;margin-left:4px">⭐ Destacado</span>' : ''}
+          </div>
+          <div class="pending-meta" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px">
+            <span style="background:${ciudadColor};color:#fff;font-size:.7rem;font-weight:700;padding:2px 9px;border-radius:12px">🏙️ ${p.ciudad||'Zaragoza'}</span>
+            <span>📍 ${p.barrio||'—'}</span>
+            ${p.addr ? `<span>🏠 ${p.addr}</span>` : ''}
+            <span style="font-weight:700;color:${ciudadColor}">💶 ${p.price}€/mes</span>
+            <span>🛏 ${p.hab} hab</span>
+            ${p.m2 ? `<span>📐 ${p.m2}m²</span>` : ''}
+            ${p.amueblado ? `<span>🪑 ${p.amueblado}</span>` : ''}
+            ${p.plazas ? `<span>🤝 ${p.plazas} plazas</span>` : ''}
+            ${gLabel ? `<span>${gLabel}</span>` : ''}
+          </div>
+          <div class="pending-meta" style="margin-top:5px">
+            👤 ${p.nombre}${p.tel?' · 📞 '+p.tel:''}
+          </div>
+          ${p.desc ? `<div style="font-size:.77rem;color:var(--ink);margin-top:5px;background:var(--bg);padding:6px 10px;border-radius:6px">${p.desc}</div>` : ''}
+          ${p.photos && p.photos.length ? `<div style="display:flex;gap:6px;margin-top:8px;overflow-x:auto">${p.photos.map(src=>`<img src="${src}" style="width:70px;height:55px;object-fit:cover;border-radius:6px;flex-shrink:0"/>`).join('')}</div>` : ''}
+          <div style="font-size:.7rem;color:var(--muted);margin-top:4px">${p.createdAt}</div>
+        </div>
+        <div class="pending-actions" id="acts-${p.id}"></div>`;
+      el.appendChild(card);
+
+      // buttons separately to avoid quote escaping issues
+      const acts = document.getElementById('acts-'+p.id);
+      if (p.status !== 'approved') {
+        const appBtn = document.createElement('button');
+        appBtn.className = 'approve-btn';
+        appBtn.textContent = t('approve');
+        appBtn.addEventListener('click', () => changeStatus(p.id, 'approved', type));
+        acts.appendChild(appBtn);
+      }
+      if (p.status !== 'rejected') {
+        const rejBtn = document.createElement('button');
+        rejBtn.className = 'reject-btn';
+        rejBtn.textContent = t('reject');
+        rejBtn.addEventListener('click', () => changeStatus(p.id, 'rejected', type));
+        acts.appendChild(rejBtn);
+      }
+      const featBtn = document.createElement('button');
+      featBtn.style.cssText = `padding:7px 12px;border-radius:7px;font-size:.76rem;font-weight:700;cursor:pointer;border:1.5px solid #fcd34d;background:${p.featured?'#fef3c7':'#fff'};color:#92400e;font-family:'DM Sans',sans-serif`;
+      featBtn.textContent = p.featured ? '⭐ Quitar destacado' : '☆ Destacar';
+      featBtn.addEventListener('click', () => toggleFeatured(p.id, type));
+      acts.appendChild(featBtn);
+    });
+  }
+
+  renderSection(document.getElementById('adm-pend'),  pend,  t('emptyPend'), 'piso');
+  renderSection(document.getElementById('adm-aprov'), aprov, t('emptyAprov'), 'piso');
+  renderSection(document.getElementById('adm-cpend'), [...comparte], t('emptyComp'), 'comparte');
+
+  // Solicitudes
+  const se = document.getElementById('adm-sols');
+  se.innerHTML = '';
+  if (!solicitudes.length) {
+    se.innerHTML = `<div class="empty-state"><span>🔍</span><p>${t('emptySols')}</p></div>`;
+    return;
+  }
+  solicitudes.forEach(s => {
+    const d = document.createElement('div');
+    d.className = 'pending-card';
+    const gLabel = s.genero && s.genero!=='all' ? (s.genero==='fem' ? ' · 👩 Solo chicas' : ' · 👨 Solo chicos') : '';
+    d.innerHTML = `
+      <div class="pending-info">
+        <div class="pending-name">👤 ${s.nombre}</div>
+        <div class="pending-meta">
+          ✉️ ${s.email}
+          ${s.carrera ? ' · 🎓 '+s.carrera : ''}
+          ${s.pmax    ? ' · 💶 máx '+s.pmax+'€' : ''}
+          ${s.hab && s.hab!=='cualquiera' ? ' · 🛏 '+s.hab : ''}
+          ${s.zona    ? ' · 📍 '+s.zona : ''}
+          ${s.tipo    ? ' · '+s.tipo : ''}
+          ${gLabel}
+        </div>
+        ${s.msg ? `<div style="font-size:.77rem;margin-top:4px;color:var(--ink)">💬 ${s.msg}</div>` : ''}
+        <div style="font-size:.7rem;color:var(--muted);margin-top:4px">${s.createdAt}</div>
+      </div>`;
+    se.appendChild(d);
+  });
+}
+
+async function changeStatus(id, status, type) {
+  const list = type === 'comparte' ? comparte : pisos;
+  const item = list.find(x => x.id === id);
+  if (!item) return;
+  item.status = status;
+  await sbUpsertOne(type === 'comparte' ? 'comparte_v3' : 'pisos_v3', item);
+  showToast(status==='approved' ? t('toastApproved') : t('toastRejected'));
+  renderAdminPanel();
+  renderListings();
+  renderMaps();
+}
+
+async function toggleFeatured(id, type) {
+  const list = type === 'comparte' ? comparte : pisos;
+  const item = list.find(x => x.id === id);
+  if (!item) return;
+  item.featured = !item.featured;
+  await sbUpsertOne(type === 'comparte' ? 'comparte_v3' : 'pisos_v3', item);
+  showToast(item.featured ? '⭐ Anuncio destacado' : 'Destacado eliminado');
+  renderAdminPanel();
+  renderListings();
+}
+
+function showAdmTab(name, btn) {
+  document.querySelectorAll('.adm-section').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.atab').forEach(b => b.classList.remove('on'));
+  document.getElementById('adm-'+name).classList.add('on');
+  btn.classList.add('on');
+}
+
+// ── VIEWS ─────────────────────────────────────────────────────────────────────
+function showView(v) {
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+  const target = document.getElementById('view-'+v);
+  if (!target) return;
+  target.classList.add('active');
+  if (v==='home' || v==='pisos') {
+    setTimeout(() => {
+      renderMaps();
+      [mapHome, mapPisos].forEach(m => { if (m) m.invalidateSize(); });
+    }, 120);
+  }
+  if (v==='ofrecer') {
+    document.getElementById('of-form').style.display = 'block';
+    document.getElementById('of-success').style.display = 'none';
+    selectTipo('piso');
+    currentGender = 'all';
+    selectGender('all');
+    // Reset edit state and photos
+    editingId = null; editingType = null;
+    uploadedPhotos = [];
+    renderPhotoPreviews();
+    document.getElementById('of-submit').textContent = t('ofSubmit');
+    // Clear form fields
+    ['of-titulo','of-addr','of-desc','of-nombre','of-tel','of-email','of-m2'].forEach(id=>{
+      const el=document.getElementById(id); if(el) el.value='';
+    });
+    document.getElementById('of-price').value='';
+  }
+  if (v==='buscar') {
+    document.getElementById('bu-form').style.display = 'block';
+    document.getElementById('bu-success').style.display = 'none';
+  }
+  if (v==='favoritos') renderFavs();
+  if (v==='admin' && adminLogged) renderAdminPanel();
+  window.scrollTo(0, 0);
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3200);
+}
+
+// ── LANG APPLY ────────────────────────────────────────────────────────────────
+function applyLang() {
+  const s = (id, val) => { const el=document.getElementById(id); if(el) el.textContent=val; };
+  const h = (id, val) => { const el=document.getElementById(id); if(el) el.innerHTML=val; };
+
+  s('nav-pisos',    t('navPisos'));
+  s('nav-comparte', t('navComparte'));
+  s('nav-ofrecer',  t('navOfrecer'));
+  s('nav-buscar',   t('navBuscar'));
+  s('h-tag',        t('hTag'));
+  h('h-title',      t('hTitle'));
+  s('h-sub',        t('hSub'));
+  s('h-btn1',       t('hBtn1'));
+  s('h-btn2',       t('hBtn2'));
+  s('h-btn3',       t('hBtn3'));
+  s('stat-pisos-lbl', t('statPisosLbl'));
+  s('stat-comp-lbl',  t('statCompLbl'));
+  s('stat-sol-lbl',   t('statSolLbl'));
+  s('feat1', t('feat1')); s('feat2', t('feat2')); s('feat3', t('feat3')); s('feat4', t('feat4'));
+  s('map-title-home',  t('mapTitleHome'));
+  s('map-empty-txt',   t('mapEmptyTxt'));
+  s('map-title-pisos', t('mapTitlePisos'));
+  s('map-empty-txt2',  t('mapEmptyTxt'));
+  s('listings-title',  t('listingsTitle'));
+  s('listings-sub',    t('listingsSub'));
+  s('comp-title',      t('compTitle'));
+  s('comp-sub',        t('compSub'));
+  s('comp-btn-ofrecer', t('compBtnOfrecer'));
+  s('comp-btn-buscar',  t('compBtnBuscar'));
+  // filtros
+  s('fil-l-zona',  t('filZona'));   s('fil-l-pmin',  t('filPmin'));
+  s('fil-l-pmax',  t('filPmax'));   s('fil-l-hab',   t('filHab'));
+  s('fil-l-mueb',  t('filMueb'));   s('fil-l-tipo',  t('filTipo'));
+  s('fil-l-orden', t('filOrden')); s('fil-l-pref',  t('filPref'));
+  s('fil-reset',   t('filReset'));
+  s('fil-mueb-si', t('filMuebSi')); s('fil-mueb-no', t('filMuebNo'));
+  s('fil-tipo-piso', t('filTipoPiso')); s('fil-tipo-comp', t('filTipoComp'));
+  s('fil-ord-rec', t('filOrdRec')); s('fil-ord-asc', t('filOrdAsc')); s('fil-ord-desc', t('filOrdDesc'));
+  // ofrecer
+  s('of-title',   t('ofTitle'));  s('of-sub',    t('ofSub'));
+  s('of-l-tipo',  t('ofLTipo')); s('tipo-piso-lbl', t('tiposPiso')); s('tipo-comparte-lbl', t('tiposComparte'));
+  s('of-l-titulo', t('ofLTitulo')); s('of-l-barrio', t('ofLBarrio'));
+  s('of-l-price',  t('ofLPrice'));  s('of-l-addr',   t('ofLAddr'));
+  s('of-l-hab',    t('ofLHab'));    s('of-l-m2',     t('ofLM2'));
+  s('of-l-amueblado', t('ofLAmueblado'));
+  const ofAmuel = document.getElementById('of-amueblado');
+  if (ofAmuel) ofAmuel.innerHTML = t('siNo').map(v=>`<option>${v}</option>`).join('');
+  s('of-comparte-note', t('compartNote'));
+  s('of-l-plazas', t('ofLPlazas')); s('of-l-perfil', t('ofLPerfil'));
+  const ofPerf = document.getElementById('of-perfil');
+  if (ofPerf) ofPerf.innerHTML = t('perfiles').map(v=>`<option>${v}</option>`).join('');
+  s('of-l-normas', t('ofLNormas')); s('of-l-desc', t('ofLDesc'));
+  s('of-l-nombre', t('ofLNombre')); s('of-l-tel',  t('ofLTel')); s('of-l-email', t('ofLEmail'));
+  s('of-submit',   t('ofSubmit'));  s('of-note',   t('ofNote'));
+  s('of-l-genero', t('ofLGenero'));
+  s('g-all-lbl',  t('gAll'));  s('g-masc-lbl', t('gMasc')); s('g-fem-lbl', t('gFem'));
+  // buscar
+  s('bu-title',    t('buTitle'));  s('bu-sub',    t('buSub'));
+  s('bu-l-nombre', t('buLNombre')); s('bu-l-email', t('buLEmail'));
+  s('bu-l-carrera', t('buLCarrera')); s('bu-l-pmax', t('buLPmax'));
+  s('bu-l-hab',    t('buLHab'));   s('bu-cualquiera', t('buCualquiera'));
+  s('bu-l-zona',   t('buLZona')); s('bu-sinpref', t('buSinPref'));
+  s('bu-l-tipo',   t('buLTipo')); s('bu-tipo-todos', t('buTipoTodos'));
+  s('bu-tipo-piso', t('buTipoPiso')); s('bu-tipo-comparte', t('buTipoComparte'));
+  s('bu-l-msg',    t('buLMsg'));   s('bu-submit',  t('buSubmit')); s('bu-note', t('buNote'));
+  s('bu-l-genero', t('buLGenero'));
+  // admin
+  s('adm-login-title', t('admLoginTitle')); s('adm-login-sub', t('admLoginSub'));
+  s('adm-l-user', t('admLUser')); s('adm-l-pass', t('admLPass'));
+  s('adm-login-btn', t('admLoginBtn'));
+  s('adm-panel-title', t('admPanelTitle')); s('adm-logout', t('admLogout'));
+  s('adm-s1l', t('adms1l')); s('adm-s2l', t('adms2l')); s('adm-s3l', t('adms3l'));
+  s('adm-s4l', t('adms4l')); s('adm-s5l', t('adms5l'));
+  s('atab1', t('atab1')); s('atab2', t('atab2')); s('atab3', t('atab3')); s('atab4', t('atab4'));
+
+  renderListings();
+  if (adminLogged) renderAdminPanel();
+}
+
+function setLang(l, btn) {
+  lang = l;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  applyLang();
+}
+
+// ── BOOT ──────────────────────────────────────────────────────────────────────
+function tryInitMap(id, ref) {
+  if (typeof L === 'undefined') { setTimeout(() => tryInitMap(id, ref), 100); return; }
+  const el = document.getElementById('map-' + id);
+  if (!el || el.offsetHeight === 0) { setTimeout(() => tryInitMap(id, ref), 100); return; }
+  if (!ref.val) {
+    ref.val = initMap('map-' + id);
+    ref.val.setView([41.65, -0.89], 8);
+    setTimeout(() => ref.val.invalidateSize(), 200);
+    setTimeout(() => ref.val.invalidateSize(), 600);
+  }
+}
+const mapHomeRef = {val: null};
+const mapPisosRef = {val: null};
+
+// Proxy para compatibilidad con el resto del código
+Object.defineProperty(window, 'mapHome', {
+  get: () => mapHomeRef.val,
+  set: (v) => { mapHomeRef.val = v; }
+});
+Object.defineProperty(window, 'mapPisos', {
+  get: () => mapPisosRef.val,
+  set: (v) => { mapPisosRef.val = v; }
+});
+
+(async () => {
+  tryInitMap('home', mapHomeRef);
+  tryInitMap('pisos', mapPisosRef);
+  await loadData();
+  applyLang();
+  updateFavCount();
+  const doRender = () => {
+    if (typeof L === 'undefined' || !mapHomeRef.val) { setTimeout(doRender, 150); return; }
+    renderMaps();
+  };
+  doRender();
+  if (location.search.includes('admin')) showView('admin');
+})();
+</script>
+</body>
+</html>
